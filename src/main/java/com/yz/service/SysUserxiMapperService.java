@@ -1,0 +1,55 @@
+package com.yz.service;
+
+import com.yz.pojo.User;
+
+
+import java.util.List;
+
+/**
+ * @Email: 1793925141@qq.com
+ * @Author: yangzhan
+ * @Tiem: 2021/7/25 19:37 星期日
+ * @Software: IntelliJ IDEA
+ * @File : SysUserxiMapperService.JAVA
+ */
+public interface SysUserxiMapperService {
+
+    /**
+     * 用户列表
+     * @param page
+     * @param limit
+     * @return
+     */
+    List<User> selectAll(Integer page, Integer limit);
+
+    /**
+     * 用户人数
+     * @return
+     */
+    int selectCount();
+
+    /**
+     * 权限管理，修改普通用户，或管理员
+     * @param user
+     * @return
+     */
+    int updateStat(User user);
+
+
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    int updateUser(User user);
+
+
+    /**
+     * 获取用户个人中心个人信息
+     * @param user
+     * @return
+     */
+
+    User selectUser(User user);
+}

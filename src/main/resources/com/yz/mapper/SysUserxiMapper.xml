@@ -1,0 +1,70 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.ong//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yz.mapper.SysUserxiMapper">
+
+
+<!--    用户表的分页-->
+    <select id="selectAll" resultType="com.yz.pojo.User">
+            select id, username, stati, stats, email, integral, codecurrency, phone, sex, interest, summary, area, school, time from xiton.user
+            Limit #{page},#{limit}
+    </select>
+<!--    用户人数-->
+    <select id="selectCount" resultType="java.lang.Integer">
+            select COUNT(*) from xiton.userdata
+    </select>
+<!--用户修改信息-->
+    <update id="updateUser">
+        update xiton.user
+        <set>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="interest != null and interest != ''">
+                interest = #{interest},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="summary != null and summary != ''">
+                summary = #{summary},
+            </if>
+            <if test="area != null and area != ''">
+                area = #{area},
+            </if>
+            <if test="school != null and school != ''">
+                school = #{school},
+            </if>
+        </set>
+        where username=#{username}
+    </update>
+    <update id="updateStat">
+        update xiton.user
+        <set>
+            <if test="stati != null and stati != ''">
+                stati = #{stati},
+            </if>
+            <if test="stats != null and stats != ''">
+                stats = #{stats},
+            </if>
+        </set>
+       <where>
+            <if test="stati != null and stati != ''">
+                and id = #{id}
+            </if>
+            <if test="stats != null and stats != ''">
+                and username = #{username}
+            </if>
+        </where>
+    </update>
+
+<!--    获取用户个人中心个人信息-->
+    <select id="selectUser" resultType="com.yz.pojo.User">
+        select id, username, stati, stats, email, integral, codecurrency, phone, sex, interest, summary, area, school, time from xiton.user
+        where username = #{username}
+    </select>
+
+
+
+</mapper>
