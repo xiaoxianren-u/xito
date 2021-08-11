@@ -3,10 +3,10 @@
     console.log(sessionStorage.getItem("ia") +"11111111111111111");
     console.log(sessionStorage.getItem("userid")+"2222222");
 
-    var lastTime = new Date().getTime();
-    var currentTime = new Date().getTime();
+    let lastTime = new Date().getTime();
+    let currentTime = new Date().getTime();
     // var timeOut = 15 * 60 * 1000; //设置超时时间： 15分
-    var timeOut = 20 * 60 * 1000; //设置超时时间： 15分
+    const timeOut = 20 * 60 * 1000; //设置超时时间： 20分
 
     $(function(){
     /* 鼠标移动事件 */

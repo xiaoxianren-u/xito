@@ -3,6 +3,7 @@ package com.yz.service.serviceImp;
 import com.yz.mapper.SysUserxiMapper;
 import com.yz.pojo.User;
 import com.yz.service.SysUserxiMapperService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,9 +71,30 @@ public class SysUserxiMapperServiceImp implements SysUserxiMapperService {
      * @return sysUserxiMapper.selectUser(user)
      */
 
-
     @Override
     public User selectUser(User user) {
         return sysUserxiMapper.selectUser(user);
+    }
+
+    /**
+     * 修改头像
+     * @param user
+     * @return int
+     */
+
+    @Override
+    public int updateImage(User user) {
+        return sysUserxiMapper.updateImage(user);
+    }
+
+    /**
+     * 显示首页头像
+     * @param username
+     * @return 图片地址
+     */
+
+    @Override
+    public String inde_image(String username) {
+        return sysUserxiMapper.inde_image(username);
     }
 }

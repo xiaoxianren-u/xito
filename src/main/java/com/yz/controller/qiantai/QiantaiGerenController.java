@@ -1,13 +1,16 @@
 package com.yz.controller.qiantai;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.yz.pojo.User;
 import com.yz.service.SysUserxiMapperService;
+import com.yz.util.DataJson;
+import com.yz.util.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**
@@ -47,7 +50,6 @@ public class QiantaiGerenController {
 
     /**
      * /sys/qiantai/geren/gerindex/updata
-     * /sys/qiantai/geren/gerindex/updata
      * 信息修改
      * @param
      * @return
@@ -85,6 +87,75 @@ public class QiantaiGerenController {
 
         return paxt+"/tuijian";
     }
+
+    /**
+     * 个人头像页面
+     * @return paxt + "/toux"
+     */
+    @RequestMapping(value = "/toux")
+    public String toux(){
+        return paxt + "/toux";
+    }
+
+    /**
+     * 上传图片
+     * @param file
+     * @param request
+     * @return JSON
+     */
+    @RequestMapping(value = "/image")
+    @ResponseBody
+    public String image(@RequestParam("file") MultipartFile file, HttpServletRequest request){
+        System.out.println("file = " + file);
+        String imagePath = UploadUtils.upload(file,request);
+        HashMap<String, String> map = new HashMap<>();
+        DataJson dataJson = new DataJson();
+        String str = null;
+        if (imagePath != null) {
+            dataJson.setCode(1);
+            dataJson.setMsg("上传成功");
+            System.out.printf("++++++++++++++++++++++++++++_——————————————————————————————————————————");
+            map.put("src",imagePath);
+            dataJson.setData(map);
+        }else {
+            dataJson.setCode(0);
+            dataJson.setMsg("上传失败");
+        }
+        return JSON.toJSONString(dataJson);
+
+    }
+
+    /**
+     * 保存图片路径
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "imager" ,method = RequestMethod.POST)
+    @ResponseBody
+    public String imager(@RequestBody User user){
+        HashMap<String, String> map = new HashMap();
+        System.out.println("user.getImage() = " + user.getImage());
+        int n = sysUserxiMapperService.updateImage(user);
+        map.put("msg",(n > 0) ? "修改成功":"修改失败");
+        return JSON.toJSONString(map);
+    }
+
+    /**
+     * 请求首页头像
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/indimage",method = RequestMethod.POST)
+    @ResponseBody
+    public String indeximager(@RequestBody User user){
+//        System.out.println("username = " + uy|\);
+
+        String image = sysUserxiMapperService.inde_image(user.getUsername());
+
+        return JSON.toJSONString(image);
+    }
+
+
 
 
 

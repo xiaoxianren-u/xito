@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @Email: 1793925141@qq.com
+ * @email: 1793925141@qq.com
  * @Author: yangzhan
  * @Tiem: 2021/7/26 17:54 星期一
  * @Software: IntelliJ IDEA
@@ -33,11 +31,10 @@ public class HouindexController {
     /**
      * 视图首页的请求
      * indexJsp()
-     * @return
+     * @return sys/houtai/index
      */
     @RequestMapping("/index.action")
     public String indexJsp(){
-
 
         int id = Session.nameId;
 
@@ -69,7 +66,21 @@ public class HouindexController {
         int n = sysUserxiMapperService.selectCount();
         page = page > 1 ? limit*(page-1):0;
         List<User> list=sysUserxiMapperService.selectAll(page,limit);
-//        System.out.println("list = " + list);
+        for (User s : list){
+            /**
+             * 对号码进行处理，显示****
+             */
+            if(s.getPhone().length() == 11) {
+                s.setPhone(s.getPhone().substring(0, 3) + "****" + s.getPhone().substring(7));
+                System.out.println("s.getPhone().substring(0,3)+\"****\"+s.getPhone().substring(7) = " + s.getPhone().substring(0, 3) + "****" + s.getPhone().substring(7));
+            }
+            /**
+             * 对邮箱进行处理，显示****
+             */
+            if(s.getEmail().length() != 0 && s.getEmail() != null){
+                s.setEmail(s.getEmail().replaceAll("(\\w?)(\\w+)(\\w)(@\\w+\\.[a-z]+(\\.[a-z]+)?)","$1****$3$4"));
+            }
+        }
         String str = "{\"code\":0,\"msg\":\"\",\"count\":" + n + ",\"data\":" + JSON.toJSONString(list) + "}";
         return str;
     }
@@ -82,11 +93,7 @@ public class HouindexController {
     @RequestMapping(value = "/userxi/sta")
     @ResponseBody
     public String staUser(@RequestBody User user){
-
-//        System.out.println("user = " + user);
-
         int n = sysUserxiMapperService.updateStat(user);
-
         return JSON.toJSONString(n > 0);
     }
 

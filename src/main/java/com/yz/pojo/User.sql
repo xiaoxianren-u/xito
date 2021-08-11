@@ -17,6 +17,7 @@ CREATE TABLE `user`(
 	area VARCHAR (200) NOT NULL DEFAULT 'null' COMMENT '用户所在地区',
 	school VARCHAR (150) NOT NULL DEFAULT 'null' COMMENT '用户学校',
     `time` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '用户注册的时间',
+    image varchar(200) null comment '用户头像地址',
 	PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'user';
 

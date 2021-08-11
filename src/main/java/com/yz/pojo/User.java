@@ -78,4 +78,10 @@ public class User {
      *用户注册的时间
      */
     private String time;
+
+    /**
+     * 用户头像地址
+     */
+
+    private String image;
 }

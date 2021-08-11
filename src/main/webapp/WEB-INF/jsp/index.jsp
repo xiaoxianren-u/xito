@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/icon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/code.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/layer.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/download.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/download.jpg" type="image/x-icon" />
     
     <title>Document</title>
 </head>
@@ -86,7 +87,7 @@
         <div class="grid-demo">
             <ul class="layui-nav layui-bg-blue" lay-bar="disabled">
                 <li class="layui-nav-item" lay-unselect="">
-                    <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
+                    <a href="javascript:;"><img id="image" src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/">个人中心</a></dd>
                         <dd><a href="javascript:;">横线隔断</a></dd>
@@ -118,6 +119,28 @@
 
 <script>
     
+    function image(){
+        console.log("---------------------------------------");
+        if(sessionStorage.getItem("userid") !== undefined && sessionStorage.getItem("userid") !== null && sessionStorage.getItem("userid") !== "") {
+            let username  = sessionStorage.getItem("userid");
+            console.log("---------------------------------------"+username);
+            $.ajax({
+                type: 'post',
+                url: "${pageContext.request.contextPath}/sys/qiantai/geren/indimage",
+                async: true,
+                dataType: 'json',
+                data: JSON.stringify({username:username}),
+                contentType: "application/json;charset=UTF-8",
+                success:function (res) {
+                    $("#image").attr("src",res);
+                    console.log(res);
+                    console.log("---------------------------------------"+username);
+                }
+            })
+        }
+    }
+    window.onload = image();
+    
     function fun() {
         if(sessionStorage.getItem("userid") === undefined || sessionStorage.getItem("userid") === null || sessionStorage.getItem("userid") === ""){
             name = "0";
@@ -130,7 +153,7 @@
         console.log(sessionStorage.getItem("userid"));
     }
     window.onload = fun();
-    
+    //搜索按钮
     $("#bnt").click(function () {
 
         if(sessionStorage.getItem("userid") === undefined || sessionStorage.getItem("userid") === null || sessionStorage.getItem("userid") === ""){

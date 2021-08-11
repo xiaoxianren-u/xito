@@ -31,7 +31,7 @@
 
   </servlet-mapping>
 
-  <!-- 使用filter实现登录控制 -->
+<!--   使用filter实现登录控制 -->
   <filter>
     <filter-name>SessionFilter</filter-name>
     <filter-class>com.yz.util.LoginFilter</filter-class>

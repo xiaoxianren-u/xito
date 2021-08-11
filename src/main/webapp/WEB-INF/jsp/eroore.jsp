@@ -26,6 +26,7 @@
         .txtbg404 .txtbox p a:hover { color:#FC9D1D; text-decoration:underline;}
     
     </style>
+    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/download.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/download.jpg" type="image/x-icon" />
 
 </head>
 

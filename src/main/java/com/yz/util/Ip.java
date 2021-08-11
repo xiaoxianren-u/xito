@@ -19,7 +19,11 @@ public class Ip {
 
 
     public static void main(String[] args) {
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        String pattern = "[\\w]+[.]+[\\w]+";
+        String uid = "a2sdhf23jhsd.jsp";
+        String usdf = "_df23_";
+        System.out.println("uid.matches(pattern) = " + uid.matches(pattern));
+        System.out.println("usdf.matches(pattern) = " + usdf.matches(pattern));
     }
 
 }

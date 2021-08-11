@@ -1,6 +1,7 @@
 package com.yz.service;
 
 import com.yz.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 
 import java.util.List;
@@ -52,4 +53,21 @@ public interface SysUserxiMapperService {
      */
 
     User selectUser(User user);
+
+    /**
+     *  修改头像
+     * @param user
+     * @return int
+     */
+    int updateImage(User user);
+
+
+    /**
+     * 显示首页头像
+     * @param username
+     * @return 图片地址
+     */
+
+    String inde_image(@Param("username") String username);
+
 }

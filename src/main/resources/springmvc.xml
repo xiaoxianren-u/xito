@@ -34,6 +34,7 @@
             <mvc:exclude-mapping path="/**/*.png"/>
             <mvc:exclude-mapping path="/**/*.gif"/>
             <mvc:exclude-mapping path="/**/*.jpg"/>
+<!--            <mvc:exclude-mapping path="/upload/*.jpg"/>-->
             <mvc:exclude-mapping path="/**/*.jpeg"/>
             <mvc:exclude-mapping path="/**/*.woff"/>
             <mvc:exclude-mapping path="/**/*.ttf"/>
@@ -42,4 +43,10 @@
             <bean class="com.yz.util.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="#{1024*1024}"/>
+    </bean>
+
 </beans>

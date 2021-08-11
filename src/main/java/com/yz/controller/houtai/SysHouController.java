@@ -52,7 +52,7 @@ public class SysHouController {
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public String index(@RequestBody User user, HttpSession session){
+    public String index(@RequestBody User user, HttpSession session)   {
 
         String passwordJiami = Md_5.Stringcode(user.getPassword());
         System.out.println("user = " + user);

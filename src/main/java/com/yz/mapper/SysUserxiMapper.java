@@ -41,8 +41,6 @@ public interface SysUserxiMapper {
     int updateStat(User user);
 
 
-
-
     /**
      * 用户信息修改
      * @param user
@@ -57,5 +55,20 @@ public interface SysUserxiMapper {
      */
 
     User selectUser(User user);
+
+    /**
+     *  修改头像
+     * @param user
+     * @return int
+     */
+    int updateImage(User user);
+
+    /**
+     * 显示首页头像
+     * @param username
+     * @return 图片地址
+     */
+
+    String inde_image(@Param("username") String username);
 
 }

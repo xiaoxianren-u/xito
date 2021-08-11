@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main/login.css">
     <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/el.js"></script>
+    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/download.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/download.jpg" type="image/x-icon" />
 
 </head>
 <body>
@@ -41,7 +42,7 @@
                         <div class="layui-col-xs2">
                             <div class="grid-demo grid-demo-bg1">
                                 <div style="width: 100%;height: 150px;order-radius: 50%;-moz-border-radius: 50%; -webkit-border-radius: 50%;text-align: center"><br>
-                                    <img src="${pageContext.request.contextPath}/static/imager/download.jpg" style="width: 80%;height: 80%;order-radius: 50%;-moz-border-radius: 50%; -webkit-border-radius: 50%;text-align: center">
+                                    <img id="image" src="${pageContext.request.contextPath}/static/imager/download.jpg" style="width: 80%;height: 80%;order-radius: 50%;-moz-border-radius: 50%; -webkit-border-radius: 50%;text-align: center">
                                 </div>
                             </div>
                         </div>
@@ -199,7 +200,6 @@
 <script>
 
     $("#a_bnt").click(function () {
-
         if (sessionStorage.getItem("userid") === null || sessionStorage.getItem("userid") === undefined){
             layer.alert("太久无动作，登录超时，请从新登录",{icon: 5});
         }else {
@@ -282,6 +282,7 @@
             
             var list = data.user;
             console.log(list);
+            $("#image").attr("src",list.image);
             $("#li1").html(list.integral);
             $("#li2").html(list.codecurrency);
             $("#li3").html(list.email);

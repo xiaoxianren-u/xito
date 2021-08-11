@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/v.css">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<%--    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--%>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 </head>
@@ -143,10 +143,9 @@
             ,limits:[15,20,30,50,100]
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,totalRow: true //开启合计行
-            // ,parseData:function (res) {
-            //     console.log(res);
-            // }
-
+            ,parseData:function (res) {
+                console.log(res);
+            }
             ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
                 ,{field: 'id', title: 'ID', width:60, sort: true, fixed: 'left', totalRowText: '合计：'}
@@ -163,7 +162,6 @@
                 ,{field: 'area', title: '所在地区', width: 300}
                 ,{field: 'school', title: '所在学校', width: 250}
                 ,{field: 'time', title: '注册时间', width: 200}
-
                 ,{fixed: 'right', width: 150, align:'center', toolbar: '#barDemo'}
             ]]
         });

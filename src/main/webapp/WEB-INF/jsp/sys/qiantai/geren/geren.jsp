@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main/login.css">
     <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
+    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/download.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/download.jpg" type="image/x-icon" />
+    
     <title>个人中心</title>
 </head>
 <body style="background-color: #F0F2F5">
@@ -47,6 +49,7 @@
                                                 <li class="layui-nav-item layui-nav-itemed" style="background-color: white">
                                                     <dl class="layui-col-space3" style="color: #0C0C0C">
                                                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex"   target="test" style="color: #0C0C0C">个人中心</a></dd>
+                                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/toux"   target="test"style="color: #0C0C0C">个人头像</a></dd>
                                                         <dd><a href="javascript:;" style="color: #0C0C0C">我的收藏</a></dd>
                                                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/getuijian" target="_blank" style="color: #0C0C0C">我的推荐</a></dd>
                                                         <dd><a href="" style="color: #0C0C0C">项目分享</a></dd>
