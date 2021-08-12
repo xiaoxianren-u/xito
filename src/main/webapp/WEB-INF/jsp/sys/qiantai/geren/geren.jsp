@@ -41,37 +41,35 @@
     <div class="layui-col-xs8">
         <div class="grid-demo">
             
-                            <div style="padding: 2px 10px;">
-                                <div class="layui-row">
-                                    <div class="layui-col-xs3">
-                                        <div class="grid-demo grid-demo-bg1">
-                                            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 20px;">
-                                                <li class="layui-nav-item layui-nav-itemed" style="background-color: white">
-                                                    <dl class="layui-col-space3" style="color: #0C0C0C">
-                                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex"   target="test" style="color: #0C0C0C">个人中心</a></dd>
-                                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/toux"   target="test"style="color: #0C0C0C">个人头像</a></dd>
-                                                        <dd><a href="javascript:;" style="color: #0C0C0C">我的收藏</a></dd>
-                                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/getuijian" target="_blank" style="color: #0C0C0C">我的推荐</a></dd>
-                                                        <dd><a href="" style="color: #0C0C0C">项目分享</a></dd>
-                                                        <dd><a href="javascript:;" style="color: #0C0C0C">消息通知<span class="layui-badge">9</span></a></dd>
-                                                        <dd><a href="" style="color: #0C0C0C">心愿单</a></dd>
-                                                    </dl>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="layui-col-xs9">
-                                        <div class="grid-demo">
-    
-                                            <div style="width: 100%;height: 800px;text-align: center;">
-                                                <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex" name="test" style="width: 99%;height: 100%;"></iframe>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+            <div style="padding: 2px 10px;">
+                <div class="layui-row">
+                    <div class="layui-col-xs3">
+                        <div class="grid-demo grid-demo-bg1">
+                            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 20px;">
+                                <li class="layui-nav-item layui-nav-itemed" style="background-color: white">
+                                    <dl class="layui-col-space3" style="color: #0C0C0C">
+                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex"   target="test" style="color: #0C0C0C">个人中心</a></dd>
+                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/toux"   target="test"style="color: #0C0C0C">个人头像</a></dd>
+                                        <dd><a href="javascript:;" style="color: #0C0C0C">我的收藏</a></dd>
+                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/getuijian"  style="color: #0C0C0C">我的推荐</a></dd>
+                                        <dd><a href="" style="color: #0C0C0C">项目分享</a></dd>
+                                        <dd><a href="javascript:;" style="color: #0C0C0C">消息通知<span class="layui-badge">9</span></a></dd>
+                                        <dd><a href="" style="color: #0C0C0C">心愿单</a></dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs9">
+                        <div class="grid-demo">
+
+                            <div style="width: 100%;height: 800px;text-align: center;">
+                                <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex" name="test" style="width: 99%;height: 100%;"></iframe>
                             </div>
-        
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="layui-col-xs2">

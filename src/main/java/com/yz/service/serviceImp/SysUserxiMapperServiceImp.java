@@ -87,6 +87,8 @@ public class SysUserxiMapperServiceImp implements SysUserxiMapperService {
         return sysUserxiMapper.updateImage(user);
     }
 
+
+
     /**
      * 显示首页头像
      * @param username
@@ -96,5 +98,15 @@ public class SysUserxiMapperServiceImp implements SysUserxiMapperService {
     @Override
     public String inde_image(String username) {
         return sysUserxiMapper.inde_image(username);
+    }
+
+    /**
+     *获取用户id
+     * @param user_name
+     * @return
+     */
+    @Override
+    public User userid(String user_name) {
+        return sysUserxiMapper.userid(user_name);
     }
 }

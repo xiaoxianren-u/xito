@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.ong//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yz.mapper.SysTextWenMapper">
+
+<!--        添加内容-->
+        <insert id="insertTextWenInt" >
+            insert into xiton.text_wen(
+                <trim suffixOverrides=",">
+                    <if test="text_name != null and text_name != ''">text_name,</if>
+                    <if test="text_describe != null and text_describe != ''">text_describe,</if>
+                    <if test="text_link != null and text_link != ''">text_link,</if>
+                    <if test="text_label != null and text_label != ''">text_label,</if>
+                    <if test="text_image != null and text_image != ''">text_image,</if>
+                    <if test="text_detailed != null and text_detailed != ''">text_detailed,</if>
+                    <if test="text_rec_id != null">text_rec_id,</if>
+                </trim>
+            )values (
+                <trim suffixOverrides=",">
+                    <if test="text_name != null and text_name != ''">#{text_name},</if>
+                    <if test="text_describe != null and text_describe != ''">#{text_describe},</if>
+                    <if test="text_link != null and text_link != ''">#{text_link},</if>
+                    <if test="text_label != null and text_label != ''">#{text_label},</if>
+                    <if test="text_image != null and text_image != ''">#{text_image},</if>
+                    <if test="text_detailed != null and text_detailed != ''">#{text_detailed},</if>
+                    <if test="text_rec_id != null">#{text_rec_id},</if>
+                </trim>
+            )
+        </insert>
+<!--        显示所有内容数据-->
+        <select id="selectTextWen" resultType="com.yz.pojo.TextWen">
+            select * from xiton.text_wen
+            where  text_rec_id = #{id}
+        </select>
+</mapper>

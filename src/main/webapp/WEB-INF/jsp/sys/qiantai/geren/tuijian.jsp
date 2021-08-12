@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,7 +15,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min_2.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/layui.js"></script>
-    
     <script src="${pageContext.request.contextPath}/static/js/session.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/laydate/default/laydate.css">
@@ -33,6 +32,20 @@
 
 </head>
 <body>
+
+
+<ul class="layui-nav" lay-bar="disabled">
+    <li class="layui-nav-item" lay-unselect="">
+        <img id="image" src="//t.cn/RCzsdCq" class="layui-nav-img">
+    </li>
+    <li class="layui-nav-item  layui-icon">
+        <a href="${pageContext.request.contextPath}/">&#xe68e;首页</a>
+    </li>
+    <li class="layui-nav-item layui-icon" >
+        <a href="${pageContext.request.contextPath}/sys/qiantai/geren/">&#xe65c;返回</a>
+    </li>
+</ul>
+
 <div class="layui-bg-gray">
     <div class="layui-row">
         <div class="layui-col-md12">
@@ -48,7 +61,6 @@
                             <button type="button" class="layui-btn layui-btn-sm" id="add"><i class="layui-icon"></i></button>
                         </div>
                     </div>
-
                     <hr/>
                     
                     <div id="app">
@@ -57,18 +69,18 @@
                                 <div class="layui-col-md3">
                                     <div class="layui-panel">
                                         <a href="javascript:;" id="a"  >
-                                            <div style="padding: 15px 15px;" id="">
+                                            <div style="padding: 15px 15px;">
                                                 <div class="layui-row layui-col-space10">
                                     
                                                     <div class="layui-col-xs5">
                                                         <div class="grid-demo grid-demo-bg1">
                                                             <div style="width: 100%; height: 200px;background-color: #1E9FFF" id="img">
-                                                                <img src="${pageContext.request.contextPath}/static/imager/download.jpg" style="width: 100%;height: 100%">
+                                                                <img src="${pageContext.request.contextPath}/static/imager/mo.jpg" style="width: 100%;height: 100%">
                                                             </div>
                                                             <div style="text-align: center">
 <%--                                                                <span class="layui-badge layui-bg-green" id="di">3</span>--%>
                                                                 <br/>
-                                                                <span class="layui-badge-rim" style="width: 30px;height: 20px;font-size: 17px" >java</span>
+                                                                <span class="layui-badge-rim" style="height: 20px;font-size: 17px" >算法与数据结构</span>
 <%--                                                                <h2 id="h2">java</h2>--%>
                                                             </div>
                                                         </div>
@@ -86,24 +98,23 @@
                                                                     <div class="layui-col-xs4">
                                                                         <div class="grid-demo grid-demo-bg1">
 <%--                                                                            收藏--%>
-                                                                            <i class="layui-icon" style="color: red">&#xe600;</i>
+                                                                            <i class="layui-icon" style="color: red"  id="sou" aria-hidden="true">&#xe600;</i>
                                                                         </div>
                                                                     </div>
                                                                     <div class="layui-col-xs4">
                                                                         <div class="grid-demo">
 <%--                                                                            分分享--%>
-                                                                            <i class="layui-icon">&#xe641;</i>
+                                                                            <i class="layui-icon" style="color: #1E9FFF" id="fen" aria-hidden="true">&#xe641;</i>
                                                                         </div>
                                                                     </div>
                                                                     <div class="layui-col-xs4">
                                                                         <div class="grid-demo grid-demo-bg1">
 <%--                                                                            打开--%>
-                                                                            <i class="layui-icon"><a id="an_d" href="http://www.baidu.com">&#xe64c;</a> </i>
+                                                                            <a id="an_d" href="http://www.baidu.com"><i class="layui-icon" style="color: #2b9f2e" id="lian" aria-hidden="true">&#xe64c; </i></a>
                                                                         </div>
                                                                     </div>
                                                                     
                                                                 </div>
-                                        
                                                         </div>
                                                     </div>
                                 
@@ -149,7 +160,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label"><span style="color: red;">*</span> 标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签</label>
             <div class="layui-input-block">
-                <select name="interest" lay-filter="aihao">
+                <select name="text_label" id="text_label" lay-filter="aihao">
                     <option></option>
                     <optgroup label="编程语言">
                         <option value="1-0">Java</option>
@@ -196,9 +207,9 @@
         </div>
     
         <div class="layui-form-item">
-            <label class="layui-form-label">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述</label>
+            <label class="layui-form-label">详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;细</label>
             <div class="layui-input-block">
-                <textarea type="text" id="text_detailed" name="text_detailed" minlength="0" maxlength="300" oninput="wordLeg(this);"  onpropertychange="if(value.length>300) value=value.substr(0,300)" lay-verify="title" autocomplete="off" placeholder="请描述你提供的内容，最多50字"  class="layui-textarea"></textarea>
+                <textarea type="text" id="text_detailed" name="text_detailed" minlength="0" maxlength="300" oninput="wordLeg(this);"  onpropertychange="if(value.length>300) value=value.substr(0,300)" lay-verify="title" autocomplete="off" placeholder="请描述你提供的内容，最多300字"  class="layui-textarea"></textarea>
             </div>
         </div>
         
@@ -208,6 +219,78 @@
 <div style="text-align: center;width: 100%;height: 50px;background-color: #a1a1a1">
     <%@ include file="../../../head.jsp" %>
 </div>
+
+<%--头像--%>
+<script>
+    function image(){
+        console.log("---------------------------------------");
+        if(sessionStorage.getItem("userid") !== undefined && sessionStorage.getItem("userid") !== null && sessionStorage.getItem("userid") !== "") {
+            let username  = sessionStorage.getItem("userid");
+            console.log("---------------------------------------"+username);
+            $.ajax({
+                type: 'post',
+                url: "${pageContext.request.contextPath}/sys/qiantai/geren/indimage",
+                async: true,
+                dataType: 'json',
+                data: JSON.stringify({username:username}),
+                contentType: "application/json;charset=UTF-8",
+                success:function (res) {
+                    $("#image").attr("src",res);
+                    console.log(res);
+                    console.log("---------------------------------------"+username);
+                }
+            })
+        }
+    }
+    window.onload = image();
+</script>
+<%--属性鼠标悬停提示--%>
+<script>
+    $(function () {
+        let txt = "收藏";
+        $("#sou")
+            .hover(function () {             //悬停事件
+            const tips = layer.tips(txt, '#sou', {
+                tips: [1, '#555555']
+                // 上右下左四个方向，通过1-4进行方向设定
+            });
+            // sleep(2000);
+            // layer.close(tips);
+        }).click(function () {    //点击事件
+            if (txt === "收藏"){
+                txt = "取消收藏";
+            }else {
+                txt = "收藏";
+            }
+        });
+        let fen = "分享";
+        $("#fen")
+            .hover(function () {             //悬停事件
+                const tips = layer.tips(fen, '#fen', {
+                    tips: [1, '#555555']
+                    // 上右下左四个方向，通过1-4进行方向设定
+                });
+                // sleep(2000);
+                // layer.close(tips);
+            }).click(function () {    //点击事件
+            
+            });
+        let lian = "前往";
+        $("#lian").hover(function () {             //悬停事件
+                const tips = layer.tips(lian, '#lian', {
+                    tips: [1, '#555555']
+                    // 上右下左四个方向，通过1-4进行方向设定
+                });
+        });
+        
+        $("#image").hover(function () {             //悬停事件
+            const tips = layer.tips(sessionStorage.getItem("userid")+"欢迎你", '#image', {
+                tips: [1, '#555555']
+                // 上右下左四个方向，通过1-4进行方向设定
+            });
+        });
+    })
+</script>
 <%--        字数提示--%>
 <script>
     function wordLeg  (obj) {
@@ -260,11 +343,10 @@
                 console.log(res);
                 if (res.code === 1) {
                     const image = res.data.src;
-                    $('#demo').attr('src', image);
+                    $('#demo').attr('src',image);
+                    sessionStorage.setItem("image",image);    //将图标存入session中
                     return layer.msg(res.msg);
                 }else {
-                    
-                    
                     layer.msg(res.msg);
                 }
                 //上传成功的一些操作
@@ -290,71 +372,88 @@
     })
     
 </script>
-
-
-
+<%--弹出层--%>
 <script>
 
     $("#add").click(function () {
-        // if (sessionStorage.getItem("userid") === null || sessionStorage.getItem("userid") === undefined){
-        //     layer.alert("太久无动作，登录超时，请从新登录",{icon: 5});
-        // }else {
-            console.log("sdfsdf")
+
             layer.open({
                 type: 1,
-                title:"基本信息",
+                title:"内容推荐表",
                 area:["800px","800px"],
                 btn: ['提交', '取消'], //可以无限个按钮
-                Number:100000,   //自动关闭的时间
+                Number:9000000,   //自动关闭的时间
                 anim:2,
                 maxmin:true, // 最大最小化。
                 resize:true, // 是否允许拉伸
                 content: $("#window"), //添加表单到弹出层
                 yes:function (index,layero){
-                    console.log("AAAAAAAAA");
-                    let email1 = $("#email").val();
-                    let phone1 = $("#phone").val();
-                    let sex1   = $('input:radio:checked').val();
-                    let interest1 = $("#interest").val();
-                    let summary1 = $("#summary").val();
-                    let area1 = $("#area").val();
-                    let school1 = $("#school").val();
-                    let username1 = sessionStorage.getItem("userid");
-                    console.log(email+" "+phone1);
-                    console.log(JSON.stringify(
-                        {
-                            username:username1,
-                            email:email1,
-                            phone:phone1,
-                            sex:sex1,
-                            interest:interest1,
-                            summary:summary1,
-                            area:area1,
-                            school:school1,
-                        }
-                    ))
-                    $.ajax({
-                        type: "post",
-                        <%--url: "${pageContext.request.contextPath}/sys/qiantai/geren/gerindex/updata",--%>
-                        async: true,
-                        dataType: "json",
-                        data: JSON.stringify({username:username1,email:email1,phone:phone1,sex:sex1,interest:interest1,summary:summary1,area:area1,school:school1,}),
-                        contentType: "application/json;charset=UTF-8",
-                        success: function (data) {
-                            // console.log(data +"++++++++++++++++");
-                            if(data.msg === true){
-                                layer.msg("修改成功",{icon : 6, offset : "auto",time:2000});
-
-                                setTimeout(function () {
-                                    window.location.reload();
-                                },2500);
+                    let text_name = $("#text_name").val();   //名称
+                    let text_describe = $("#text_describe").val();  //描述
+                    let text_link = $("#text_link").val();  // 链接
+                    let text_label = $("#text_label").val();  //标签
+                    let text_detailed = $("#text_detailed").val();  //详细
+                    let text_image = sessionStorage.getItem("image");
+                    let user_name = sessionStorage.getItem("userid");
+                    // let text_image = $("#demo").val();
+                    if (text_image === "1"){
+                        console.log("==================");
+                        text_image ="/static/imager/mo.jpg";
+                    }
+                    if (text_name === "" || text_name === null || text_name === undefined){
+                        layer.msg("标红的不能为空！！");
+                    }else if (text_describe === "" || text_describe === null || text_describe === undefined){
+                        layer.msg("标红的不能为空！！");
+                    }else if (text_link === "" || text_link === null || text_link === undefined){
+                        layer.msg("标红的不能为空！！");
+                    }else if (text_label=== "" || text_label === null || text_label === undefined){
+                        layer.msg("标红的不能为空！！");
+                    }else {
+                        console.log(
+                            JSON.stringify(
+                                {
+                                    text_name:text_name,
+                                    text_describe:text_describe,
+                                    text_link:text_link ,
+                                    text_label:text_label ,
+                                    text_detailed:text_detailed ,
+                                    text_image:text_image ,
+                                    user_name:text_name,
+                                }
+                            )
+                        )
+                        $.ajax({
+                            type: "post",
+                            url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend",
+                            async: true,
+                            dataType: "json",
+                            data: JSON.stringify({
+                                text_name:text_name,
+                                text_describe:text_describe,
+                                text_link:text_link,
+                                text_label:text_label,
+                                text_detailed:text_detailed,
+                                text_image:text_image,
+                                user_name:user_name,
+                            }),
+                            contentType: "application/json;charset=UTF-8",
+                            success: function (data) {
+                                console.log(data +"++++++++++++++++");
+                                if(data.msg===true){
+                                    layer.msg("提交成功请等待管理员审核",{icon : 6, offset : "auto",time:2000});
+                                    sessionStorage.setItem("image","1");
+                                    setTimeout(function () {
+                                        window.location.reload();
+                                    },2100);
+                                }
+                                if (data.msg === false){
+                                    layer.alert("修改失败",5);
+                                }
+                                console.log(data.data);
                             }
-                            if (data.msg === false){
-                                layer.alert("修改失败",5);
-                            }
-
-                        }
-                    })
+                        })
+                    }
+                    
                 },
             });
         // }
@@ -362,8 +461,6 @@
 
     })
 </script>
-
-
 
 </body>
 
@@ -413,26 +510,20 @@
 
 <script>
 
-    new Vue({
-        el: '#app',
-        data: {
-            sites: [
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Runoob' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Runoob' },
-                { name: 'Taobao' }
-            ]
+    let username = sessionStorage.getItem("userid");
+    $.ajax({
+        type: "post",
+        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/list",
+        async: true,
+        dataType: "json",
+        data: JSON.stringify({
+            username:username,
+        }),
+        contentType: "application/json;charset=UTF-8",
+        success: function (data) {
+            console.log(data);
         }
-    })
-
-
+    });
+    
 </script>
 </html>

@@ -155,16 +155,4 @@ public class QiantaiGerenController {
         return JSON.toJSONString(image);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -71,4 +71,12 @@ public interface SysUserxiMapper {
 
     String inde_image(@Param("username") String username);
 
+    /**
+     * 获取用户id
+     * @param user_name
+     * @return user
+     */
+    User userid(@Param("user_name") String user_name);
+
+
 }

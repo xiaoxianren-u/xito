@@ -1,6 +1,7 @@
 package com.yz.service;
 
 import com.yz.pojo.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @File : UserMapper.JAVA
  */
 
-
+@Repository
 public interface UserMapperService {
     /**
      * 用户登录

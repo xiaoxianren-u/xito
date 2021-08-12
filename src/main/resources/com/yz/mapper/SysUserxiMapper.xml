@@ -112,4 +112,10 @@
         from xiton.user
         where username = #{username}
     </select>
+<!--    获取用户id-->
+    <select id="userid" resultType="com.yz.pojo.User">
+        select id from xiton.user
+        where username=#{user_name}
+     </select>
+
 </mapper>

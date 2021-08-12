@@ -2,7 +2,8 @@ package com.yz.service;
 
 import com.yz.pojo.User;
 import org.apache.ibatis.annotations.Param;
-
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
  * @Software: IntelliJ IDEA
  * @File : SysUserxiMapperService.JAVA
  */
+
+@Repository
 public interface SysUserxiMapperService {
 
     /**
@@ -36,8 +39,6 @@ public interface SysUserxiMapperService {
      */
     int updateStat(User user);
 
-
-
     /**
      * 修改用户信息
      * @param user
@@ -45,13 +46,11 @@ public interface SysUserxiMapperService {
      */
     int updateUser(User user);
 
-
     /**
      * 获取用户个人中心个人信息
      * @param user
      * @return
      */
-
     User selectUser(User user);
 
     /**
@@ -61,13 +60,17 @@ public interface SysUserxiMapperService {
      */
     int updateImage(User user);
 
-
     /**
      * 显示首页头像
      * @param username
      * @return 图片地址
      */
-
     String inde_image(@Param("username") String username);
 
+    /**
+     * 获取用户id
+     * @param user_name
+     * @return user
+     */
+    User userid(@Param("user_name") String user_name);
 }

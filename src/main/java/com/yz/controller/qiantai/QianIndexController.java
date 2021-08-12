@@ -17,6 +17,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class QianIndexController {
 
+
+    /**
+     * 前端首页
+     * @param model
+     * @return
+     */
     @RequestMapping("/")
     public String qianindex(Model model){
 

@@ -20,7 +20,7 @@ public class QiantaiIndexController {
     private String paxt = "/sys/qiantai";
 
     /**
-     * 首页页面
+     * 后端首页页面
      * @return
      */
     @RequestMapping(value = "/qiantai")
