@@ -34,12 +34,17 @@ public class QiantaiGerenTuJianController {
     @Autowired
     private SysTextWenMapperService sysTextWenMapperService;
 
-
+    /**
+     * 添加内容
+     * @param textWen 前端数据
+     * @return
+     */
 
     @RequestMapping(value = "/recommend",method = RequestMethod.POST)
     @ResponseBody
     public String recommend(@RequestBody TextWen textWen){
         HashMap<String, Object> map = new HashMap();
+//        根据用户名获取id
         User user = sysUserxiMapperService.userid(textWen.getUser_name());
         textWen.setText_rec_id(user.getId());
         int n = sysTextWenMapperService.insertTextWenInt(textWen);
@@ -47,14 +52,47 @@ public class QiantaiGerenTuJianController {
         return JSON.toJSONString(map);
     }
 
+    /**
+     *
+     * @param username
+     * @return 内容数量
+     */
+
+    @RequestMapping(value = "/recommend/count" , method = RequestMethod.GET)
+    @ResponseBody
+    public String recommendCount(@RequestParam(value = "username") String username){
+        HashMap<String, Integer> map = new HashMap<>();
+//        内容条数
+        int count;
+        System.out.println("1");
+        User user = sysUserxiMapperService.userid(username);
+        System.out.println("2");
+        count = sysTextWenMapperService.selectTextWenCount(user.getId());
+        System.out.println("3");
+        System.out.println("count = " + count);
+        map.put("count",count);
+        return JSON.toJSONString(map);
+    }
+
+
+    /**
+     * 获取内容
+      * @param username  用户名
+     * @param curr  第几页
+     * @param limit 每页数量
+     * @return
+     */
+
     @RequestMapping(value = "/recommend/list",method = RequestMethod.POST)
     @ResponseBody
-    public String recommendList(@RequestBody User s){
+    public String recommendList(@RequestParam(value = "username") String username, @RequestParam(value = "curr") Integer curr, @RequestParam(value = "limit") Integer limit) {
         HashMap<String, Object> map = new HashMap();
-        User user = sysUserxiMapperService.userid(s.getUsername());
-
-        List<TextWen> list = sysTextWenMapperService.selectTextWen(user.getId());
+//        根据用户名获取id
+        User user = sysUserxiMapperService.userid(username);
+        curr = (curr - 1) * limit;
+        List<TextWen> list = sysTextWenMapperService.selectTextWen(user.getId(),curr,limit);
         map.put("data",list);
+        System.out.println("list = " + list);
         return JSON.toJSONString(map);
     }
 

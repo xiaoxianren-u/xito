@@ -33,7 +33,26 @@
     <title>个人中心</title>
 </head>
 <body style="background-color: #F0F2F5">
-<br><br><br><br><br><br>
+<ul class="layui-nav" lay-bar="disabled">
+    <li class="layui-nav-item" lay-unselect="">
+        <img id="image" src="//t.cn/RCzsdCq" class="layui-nav-img">
+    </li>
+    <li class="layui-nav-item  layui-icon">
+        <a href="${pageContext.request.contextPath}/">&#xe68e;首页</a>
+    </li>
+</ul>
+<script>
+    $(function () {
+        $("#image").hover(function () {             //悬停事件
+            const tips = layer.tips(sessionStorage.getItem("userid") + "欢迎你", '#image', {
+                tips: [1, '#555555']
+                // 上右下左四个方向，通过1-4进行方向设定
+            });
+        });
+    })
+</script>
+<br><br><br><br>
+
 <div class="layui-row">
     <div class="layui-col-xs2">
         <div class="grid-demo grid-demo-bg1" style="color: #F0F2F5">6/12</div>
@@ -80,6 +99,29 @@
 <div style="text-align: center;width: 100%;height: 50px;background-color: #a1a1a1">
     <%@ include file="../../../head.jsp" %>
 </div>
+<script>
+    function image() {
+        console.log("---------------------------------------");
+        if (sessionStorage.getItem("userid") !== undefined && sessionStorage.getItem("userid") !== null && sessionStorage.getItem("userid") !== "") {
+            let username = sessionStorage.getItem("userid");
+            console.log("---------------------------------------" + username);
+            $.ajax({
+                type: 'post',
+                url: "${pageContext.request.contextPath}/sys/qiantai/geren/indimage",
+                async: true,
+                dataType: 'json',
+                data: JSON.stringify({username: username}),
+                contentType: "application/json;charset=UTF-8",
+                success: function (res) {
+                    $("#image").attr("src", res);
+                    // console.log(res);
+                    // console.log("---------------------------------------" + username);
+                }
+            })
+        }
+    }
 
+    window.onload = image();
+</script>
 </body>
 </html>

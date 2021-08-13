@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main/login.css">
     <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/el.js"></script>
-    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/download.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/download.jpg" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/mo.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/mo.jpg" type="image/x-icon" />
 
 </head>
 <body>

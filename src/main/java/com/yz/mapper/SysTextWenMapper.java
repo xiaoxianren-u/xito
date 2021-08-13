@@ -1,6 +1,7 @@
 package com.yz.mapper;
 
 import com.yz.pojo.TextWen;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,12 +21,23 @@ public interface SysTextWenMapper {
      */
     int insertTextWenInt(TextWen textWen);
 
+
     /**
-     * 显示所有数据
+     *  内容数量
+     * @param id 用户id
+     * @return 数量
+     */
+
+    int selectTextWenCount(@Param("id") Integer id);
+
+    /**
+     * 显示所有内容数据
      * @param id
+     * @param curr
+     * @param limit
      * @return
      */
-    List<TextWen> selectTextWen(Integer id);
+    List<TextWen> selectTextWen(@Param("id") Integer id,@Param("curr")  int curr,@Param("limit")  int limit);
 
 
 

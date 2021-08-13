@@ -25,9 +25,19 @@
                 </trim>
             )
         </insert>
+
+<!--        内容条数-->
+
+        <select id="selectTextWenCount" resultType="int">
+            select count(*) from xiton.text_wen
+            where text_rec_id = #{id}
+        </select>
+
+
 <!--        显示所有内容数据-->
         <select id="selectTextWen" resultType="com.yz.pojo.TextWen">
             select * from xiton.text_wen
             where  text_rec_id = #{id}
+            Limit #{curr},#{limit}
         </select>
 </mapper>

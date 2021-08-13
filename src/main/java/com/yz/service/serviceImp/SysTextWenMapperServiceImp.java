@@ -34,14 +34,27 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
         return sysTextWenMapper.insertTextWenInt(textWen);
     }
 
+    /**
+     *  内容数量
+     * @param id 用户id
+     * @return 数量
+     */
+
+    @Override
+    public int selectTextWenCount(Integer id) {
+        return sysTextWenMapper.selectTextWenCount(id);
+    }
 
     /**
      * 显示所有内容数据
      * @param id
+     * @param curr
+     * @param limit
      * @return
      */
+
     @Override
-    public List<TextWen> selectTextWen(Integer id) {
-        return sysTextWenMapper.selectTextWen(id);
+    public List<TextWen> selectTextWen(Integer id, int curr, int limit) {
+        return sysTextWenMapper.selectTextWen(id, curr, limit);
     }
 }

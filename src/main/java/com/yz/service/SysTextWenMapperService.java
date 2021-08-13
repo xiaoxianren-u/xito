@@ -1,6 +1,7 @@
 package com.yz.service;
 
 import com.yz.pojo.TextWen;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +25,18 @@ public interface SysTextWenMapperService {
     int insertTextWenInt(TextWen textWen);
 
     /**
+     *  内容数量
+     * @param id 用户id
+     * @return 数量
+     */
+    int selectTextWenCount(@Param("id") Integer id);
+
+
+    /**
      * 显示所有数据
      * @param id
-     * @return
+     * @return 内容列表
      */
-    List<TextWen> selectTextWen(Integer id);
+    List<TextWen> selectTextWen(Integer id,int curr,int limit);
 
 }
