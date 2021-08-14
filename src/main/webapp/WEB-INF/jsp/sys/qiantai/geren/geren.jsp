@@ -35,7 +35,7 @@
 <body style="background-color: #F0F2F5">
 <ul class="layui-nav" lay-bar="disabled">
     <li class="layui-nav-item" lay-unselect="">
-        <img id="image" src="//t.cn/RCzsdCq" class="layui-nav-img">
+        <img id="image" src="${pageContext.request.contextPath}/static/imager/download.jpg" class="layui-nav-img">
     </li>
     <li class="layui-nav-item  layui-icon">
         <a href="${pageContext.request.contextPath}/">&#xe68e;首页</a>
@@ -54,15 +54,15 @@
 <br><br><br><br>
 
 <div class="layui-row">
-    <div class="layui-col-xs2">
+    <div class="layui-col-xs1">
         <div class="grid-demo grid-demo-bg1" style="color: #F0F2F5">6/12</div>
     </div>
-    <div class="layui-col-xs8">
+    <div class="layui-col-xs10">
         <div class="grid-demo">
             
             <div style="padding: 2px 10px;">
                 <div class="layui-row">
-                    <div class="layui-col-xs3">
+                    <div class="layui-col-xs2">
                         <div class="grid-demo grid-demo-bg1">
                             <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 20px;">
                                 <li class="layui-nav-item layui-nav-itemed" style="background-color: white">
@@ -70,7 +70,7 @@
                                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex"   target="test" style="color: #0C0C0C">个人中心</a></dd>
                                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/toux"   target="test"style="color: #0C0C0C">个人头像</a></dd>
                                         <dd><a href="javascript:;" style="color: #0C0C0C">我的收藏</a></dd>
-                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/getuijian"  style="color: #0C0C0C">我的推荐</a></dd>
+                                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/getuijian"   target="test" style="color: #0C0C0C">我的推荐</a></dd>
                                         <dd><a href="" style="color: #0C0C0C">项目分享</a></dd>
                                         <dd><a href="javascript:;" style="color: #0C0C0C">消息通知<span class="layui-badge">9</span></a></dd>
                                         <dd><a href="" style="color: #0C0C0C">心愿单</a></dd>
@@ -79,11 +79,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="layui-col-xs9">
+                    <div class="layui-col-xs10">
                         <div class="grid-demo">
 
-                            <div style="width: 100%;height: 800px;text-align: center;">
-                                <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex" name="test" style="width: 99%;height: 100%;"></iframe>
+                            <div style="width: 100%;height: 1100px;text-align: center;">
+                                <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex" name="test" style="width: 97%;height: 100%;"></iframe>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-xs2">
+    <div class="layui-col-xs1">
         <div class="grid-demo" style="color: #F0F2F5">6/12</div>
     </div>
 </div>
@@ -113,7 +113,9 @@
                 data: JSON.stringify({username: username}),
                 contentType: "application/json;charset=UTF-8",
                 success: function (res) {
-                    $("#image").attr("src", res);
+                    if (res !== null){
+                        $("#image").attr("src",res);
+                    }
                     // console.log(res);
                     // console.log("---------------------------------------" + username);
                 }

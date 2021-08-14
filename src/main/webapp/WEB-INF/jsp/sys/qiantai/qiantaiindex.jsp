@@ -30,86 +30,247 @@
     <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
     <link rel="icon" href="${pageContext.request.contextPath}/static/imager/download.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/download.jpg" type="image/x-icon" />
     <title>Document</title>
+    <style>
+        .dui-container{
+            position: relative;
+            min-height: 100%;
+        }
+        main {
+            padding-bottom: 910px;
+        }
+        header, footer{
+            /*line-height: 100px;*/
+            /*height: 100px;*/
+        }
+        footer{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
-<div class="layui-bg-gray" style="padding: 30px;">
-    <div class="layui-row " id="add">
-        <div id="app">
-            <ol>
-                <li v-for="site in sites" class="layui-col-space15">
-                    <div class="layui-col-md3" >
-                        <div class="layui-panel">
-                            <a href="javascript:;" id="a"  >
-                                <div style="padding: 15px 15px;" id="">
-                                    <div class="layui-row layui-col-space10">
-                                    
-                                        <div class="layui-col-xs5">
-                                            <div class="grid-demo grid-demo-bg1">
-                                                <div style="width: 100%; height: 200px;background-color: #1E9FFF" id="img">
-                                                    <img src="${pageContext.request.contextPath}/static/imager/download.jpg" style="width: 100%;height: 100%">
-                                                </div>
-                                                <div style="text-align: center">
-                                                    <h2 id="h2">java</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="layui-col-xs7">
-                                            <div class="grid-demo">
-                                                <%--                                自动换行--%>
-                                                <div style="height: 100%; width: 100%;word-break:break-all;">
-                                                    <br><h1 id="h1">java程序</h1><br><br>
-                                                    <span id="text" style="font-size: 20px;">nisdfkjsdifenisdnfienisdnfiesdjdfgdfgsgdfgdfgdfgf</span>
-                                                </div>
-                                        
-                                            </div>
-                                        </div>
-                                
-                                    </div>
-                            
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
 
+
+
+
+<div class="dui-container">
+<%--    <header>Header</header>--%>
+    <main><div id="view"></div></main>
+    <footer><div id="demo1"></div></footer>
+</div>
 
 
 </body>
 
-
+<%--内容面板--%>
+<script id="app" type="text/html">
+    <ol>
+        {{# layui.each(d.list, function(index, item){ }}
+        <li v-for="site in sites" class="layui-col-space15">
+            <div class="layui-col-md3">
+                <div class="layui-panel">
+                    
+                    <div style="padding: 15px 15px;">
+                        <div class="layui-row layui-col-space10">
+                            <a href={{item.text_link}}>
+                            <div class="layui-col-xs5">
+                                <div class="grid-demo grid-demo-bg1">
+                                    <div style="width: 100%; height: 195px;background-color: #1E9FFF"
+                                         id="img">
+                                        <img src={{item.text_image}} style="width: 100%;height: 100%">
+                                    </div>
+                                    
+                                    <div style="text-align: center">
+                                        <%--                                                                <span class="layui-badge layui-bg-green" id="di">3</span>--%>
+                                        <br/>
+                                        <hr/>
+                                        <span class="layui-badge-rim" style="color: #1E9FFF; height: 20px;font-size: 17px">{{item.text_label}}</span>
+                                        <%--                                                                <h2 id="h2">java</h2>--%>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                            <div class="layui-col-xs7">
+                                <div class="grid-demo">
+                                    <%--                                自动换行--%>
+                                        <a href={{item.text_link}} >
+                                    <div style="height: 190px; width: 100%;word-break:break-all;text-align: center;">
+                                        <br>
+                                        <h2 id="h1" style="text-align: center">{{item.text_name}}</h2><br>
+                                        <span id="text" style="font-size: 15px;text-align: center">{{item.text_describe}}</span>
+                                    </div>
+                                        </a>
+                                    <hr/>
+                                    <div class="layui-row" style="text-align: center">
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo grid-demo-bg1" >
+                                                <%--收藏--%>
+<%--                                                {{# if(item.text_collect=== 0){ }}--%>
+                                                <i class="layui-icon" title="收藏"
+                                                   aria-hidden="true" id="sou" value={{item.text_id}} value1={{item.text_collect}}>&#xe600;</i>
+<%--                                                {{# } else { }}--%>
+<%--                                                <i class="layui-icon" title="取消收藏"--%>
+<%--                                                   aria-hidden="true" style="color: red" id="sou"  value={{item.text_id}} value1={{item.text_collect}}>&#xe600;</i>--%>
+<%--                                                {{# } }}--%>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo">
+                                                <%--                                                                            分分享--%>
+                                                <%--                                                        <a  href="javascript:;">--%>
+                                                <i class="layui-icon" title="分享"
+                                                   style="color: #1E9FFF" id="fen"   value={{item.text_collect}}
+                                                   aria-hidden="true">&#xe641;</i>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo grid-demo-bg1">
+                                                <%--                                                                            打开--%>
+                                                <a id="an_d" href={{item.text_link}} target="_blank"><i
+                                                        class="layui-icon" title="访问"
+                                                        style="color: #2b9f2e" id="lian"
+                                                        aria-hidden="true">&#xe64c; </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                     </a>
+                </div>
+            </div>
+        </li>
+        {{# }); }}
+        {{# if(d.list.length === 0){ }}
+        无数据
+        {{# } }}
+    </ol>
+</script>
+<%--显示内容面板--%>
 <script>
-    new Vue({
-        el: '#app',
-        data: {
-            sites: [
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Runoob' },
-                { name: 'Google' },
-                { name: 'Taobao' }
-            ]
+    <%--    实现加载动画--%>
+    function loading(msg) {
+        layer.msg(msg, {
+            icon: 16,
+            shade: [0.3, '#000005'],//遮罩的颜色与透明度
+            time: false  //取消自动关闭
+        })
+    };
+    var count = 0;
+    let username = sessionStorage.getItem("userid");
+    $.ajax({
+        type: "get",
+        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/countData?text_label=",
+        async: true,
+        dataType: "json",
+        contentType: "application/json;charset=UTF-8",
+        success: function (res) {
+            count = res.count;
+            console.log(count + "dffd");
+            loading("加载中");    //开始加载
         }
     })
-    
-    
-    
+
+    function send(){
+        layui.use('laytpl', function () {
+            var laytpl = layui.laytpl,
+                laypage = layui.laypage
+
+            var list = null;
+            let username = sessionStorage.getItem("userid");
+            // 获取内容总数
+
+            //分页
+            laypage.render({
+                elem: 'demo1'
+                ,count:count
+                ,limit:12
+                ,layout: ['count', 'prev', 'page', 'next',  'refresh', 'skip']
+                // ,limits:[12]
+                , jump: function (obj) {
+                    // this.count = 22;
+                    console.log(obj);
+                    let limit =  obj.limit;
+                    let curr = obj.curr;
+                    console.log(obj.limit);
+                    $.ajax({
+                        type: "get",
+                        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/listData?text_label="+""+"&curr="+curr+"&limit="+limit,
+                        async: true,
+                        dataType: "json",
+                        contentType: "application/json;charset=UTF-8",
+                        success: function (res) {
+                            list = res.data;
+                            var data = {
+                                "list": list,
+                            }
+                            console.log(data);
+                            layer.closeAll();   //结束加载
+                            layer.msg("欢迎使用",{icon:6});
+                            var getTpl = app.innerHTML
+                                , view = document.getElementById('view');
+                            laytpl(getTpl).render(data, function (html) {
+                                view.innerHTML = html;
+                            });
+
+                        }
+                    });
+                }
+            });
+        })
+    }
+
+    setTimeout(send,1000)  //延迟0.5秒执行
+
 </script>
+<%--点击事件--%>
+<script>
+
+    $(document).on('click', '#sou', function() {
+        layer.msg('响应点击事件');
+        let text_id = $(this).attr("value");
+        let b = $(this).attr("value1");
+        let username = sessionStorage.getItem("userid");
+            //收藏
+            $.ajax({
+                type: "get",
+                url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/cllect?text_id="+text_id+"&username="+username,
+                async: true,
+                dataType: "json",
+                contentType: "application/json;charset=UTF-8",
+                success: function (res) {
+                    if (res === 1){
+                        console.log(res);
+                        layer.msg("已为你收藏",{icon:6});
+                    }
+                    if (res === 0){
+                        layer.msg("你已收藏过",{icon:6});
+                    }
+                    if (res === 2){
+                        layer.msg("无法收藏",{icon:5});
+                    }
+                }
+            })
+    })
+        .on('click', '#fen', function() {
+            layer.msg('响sss点击事件');
+        })
+    //    动态悬停
+    // .on('mouseenter', '#fen', function() {
+    //     let a = $(this).attr("value");
+    //     console.log(a);
+    //         layer.msg("ssssssssssssssssss");
+    //
+    //     })
+
+    ;
 
 
+
+</script>
 </html>

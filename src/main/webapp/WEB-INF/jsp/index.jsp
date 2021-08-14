@@ -87,7 +87,7 @@
         <div class="grid-demo">
             <ul class="layui-nav layui-bg-blue" lay-bar="disabled">
                 <li class="layui-nav-item" lay-unselect="">
-                    <a href="javascript:;"><img id="image" src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
+                    <a href="javascript:;"><img id="image" src="${pageContext.request.contextPath}/static/imager/mo.jpg" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/">个人中心</a></dd>
                         <dd><a href="javascript:;">横线隔断</a></dd>
@@ -103,9 +103,9 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-panel">
-                <div style="padding: 2px 0px;">
-                    <div style="width: 100%;height: 900px;text-align: center;">
-                        <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/qiantai" name="test" style="width: 99%;height: 890px;"></iframe>
+                <div style="padding: 0;">
+                    <div style="width: 100%;height: 930px;text-align: center;">
+                        <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/qiantai" name="test" style="width: 100%;height: 920px;"></iframe>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,11 @@
                 data: JSON.stringify({username:username}),
                 contentType: "application/json;charset=UTF-8",
                 success:function (res) {
-                    $("#image").attr("src",res);
+                    // 不为空时在回显头像
+                    if (res !== null){
+                        $("#image").attr("src",res);
+                    }
+                   
                     console.log(res);
                     console.log("---------------------------------------"+username);
                 }

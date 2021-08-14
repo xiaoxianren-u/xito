@@ -1,5 +1,6 @@
 package com.yz.service;
 
+import com.yz.pojo.TextWen;
 import com.yz.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -73,4 +74,8 @@ public interface SysUserxiMapperService {
      * @return user
      */
     User userid(@Param("user_name") String user_name);
+
+
+
+
 }

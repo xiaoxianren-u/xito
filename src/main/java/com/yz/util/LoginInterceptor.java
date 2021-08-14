@@ -48,7 +48,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         System.out.println("session.getAttribute(\"userid\") = " + session.getAttribute("userid"));
         int n =1;
-        String [] ArrayList = {"/login/yz","/eroer","/login/login","/login/zhu_ce","/sys/qiantai/qiantai"};
+        String [] ArrayList = {"/login/yz","/eroer","/login/login","/login/zhu_ce","/sys/qiantai/qiantai","/sys/qiantai/geren/recommend/listData","/sys/qiantai/geren/recommend/countData"};
 
         for (String s : ArrayList){
             if (s.equals(url)){

@@ -1,6 +1,7 @@
 package com.yz.service.serviceImp;
 
 import com.yz.mapper.SysTextWenMapper;
+import com.yz.pojo.Cllect;
 import com.yz.pojo.TextWen;
 import com.yz.service.SysTextWenMapperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
         return sysTextWenMapper.insertTextWenInt(textWen);
     }
 
+
+
     /**
      *  内容数量
      * @param id 用户id
@@ -56,5 +59,61 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
     @Override
     public List<TextWen> selectTextWen(Integer id, int curr, int limit) {
         return sysTextWenMapper.selectTextWen(id, curr, limit);
+    }
+
+    /**
+     * 前端内容条数
+     * @param text_label
+     * @return
+     */
+    @Override
+    public int selectTextWenCountData(String text_label) {
+        return sysTextWenMapper.selectTextWenCountData(text_label);
+    }
+
+    /**
+     * 显示前端所有
+     * @param text_label
+     * @param curr
+     * @param limit
+     * @return
+     */
+
+    @Override
+    public List<TextWen> selectTextWenData(String text_label, int curr, int limit) {
+        return sysTextWenMapper.selectTextWenData(text_label, curr, limit);
+    }
+
+    /**
+     * 查询收藏
+     * @param username
+     * @return
+     */
+
+    @Override
+    public List<Cllect> selectCll(String username) {
+        return sysTextWenMapper.selectCll(username);
+    }
+
+    /**
+     * 添加收藏
+     * @param text_id
+     * @param username
+     * @param cll_data
+     * @return
+     */
+    @Override
+    public int insertCllect(Integer text_id, String username, String cll_data) {
+        return sysTextWenMapper.insertCllect(text_id, username, cll_data);
+    }
+
+    /**
+     * 实现作者内容删除
+     * @param textWen
+     * @return
+     */
+    @Override
+    public int selectText(TextWen textWen) {
+        return sysTextWenMapper.selectText(textWen);
     }
 }

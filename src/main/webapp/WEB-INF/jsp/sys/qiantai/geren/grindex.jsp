@@ -69,7 +69,7 @@
 <br><br/>
 <div class="layui-bg-gray">
     <div class="layui-row ">
-        <div class="layui-col-md6">
+        <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header" >
                     <div class="layui-row">

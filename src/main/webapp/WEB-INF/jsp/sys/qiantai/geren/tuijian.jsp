@@ -29,22 +29,40 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main/login.css">
     <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
     <link rel="icon" href="${pageContext.request.contextPath}/static/imager/mo.jpg"  mce_href="/${pageContext.request.contextPath}/static/imager/mo.jpg" type="image/x-icon"/>
+    <style>
+        .dui-container{
+            position: relative;
+            min-height: 100%;
+        }
+        main {
+            padding-bottom: 940px;
+        }
+        header, footer{
+            line-height: 0px;
+            height: 20px;
+        }
+        footer{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
     <title>我的推荐</title>
 </head>
 <body>
 
 
-<ul class="layui-nav" lay-bar="disabled">
-    <li class="layui-nav-item" lay-unselect="">
-        <img id="image" src="//t.cn/RCzsdCq" class="layui-nav-img">
-    </li>
-    <li class="layui-nav-item  layui-icon">
-        <a href="${pageContext.request.contextPath}/">&#xe68e;首页</a>
-    </li>
-    <li class="layui-nav-item layui-icon">
-        <a href="${pageContext.request.contextPath}/sys/qiantai/geren/">&#xe65c;返回</a>
-    </li>
-</ul>
+<%--<ul class="layui-nav" lay-bar="disabled">--%>
+<%--    <li class="layui-nav-item" lay-unselect="">--%>
+<%--        <img id="image" src="${pageContext.request.contextPath}/static/imager/download.jpg" class="layui-nav-img">--%>
+<%--    </li>--%>
+<%--    <li class="layui-nav-item  layui-icon">--%>
+<%--        <a href="${pageContext.request.contextPath}/">&#xe68e;首页</a>--%>
+<%--    </li>--%>
+<%--    <li class="layui-nav-item layui-icon">--%>
+<%--        <a href="${pageContext.request.contextPath}/sys/qiantai/geren/">&#xe65c;返回</a>--%>
+<%--    </li>--%>
+<%--</ul>--%>
 
 <div class="layui-bg-gray">
     <div class="layui-row">
@@ -62,17 +80,31 @@
                             
                         </div>
 <%--                        分页--%>
-                        <div id="demo1"></div>
+
                     </div>
-                    <hr/>
-                    <div id="view"></div>
-                
                 </div>
-                <%--                分页--%>
                 
             </div>
         </div>
     </div>
+</div>
+
+<div class="dui-container">
+<%--内容--%>
+    <main><div id="view"></div></main>
+        <%--                        分页--%>
+    <footer>
+        <div class="layui-bg-gray">
+            <div class="layui-row">
+                <div class="layui-col-md12">
+                    <div class="layui-panel">
+                        <div><div id="demo1"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </footer>
 </div>
 
 
@@ -167,87 +199,218 @@
     </form>
 </div>
 
-<div style="text-align: center;width: 100%;height: 50px;background-color: #a1a1a1">
-    <%@ include file="../../../head.jsp" %>
-</div>
+<%--<div style="text-align: center;width: 100%;height: 50px;background-color: #a1a1a1">--%>
+<%--    <%@ include file="../../../head.jsp" %>--%>
+<%--</div>--%>
 <%--每个面板的内容--%>
 <script id="app" type="text/html">
     <ol>
         {{# layui.each(d.list, function(index, item){ }}
+    
+        {{# if(item.text_status=== 0){ }}
         <li v-for="site in sites" class="layui-col-space15">
             <div class="layui-col-md3">
                 <div class="layui-panel">
-<%--                    <a href="/" id="a">--%>
-                        <div style="padding: 15px 15px;">
-                            <div class="layui-row layui-col-space10">
+                    
+                    <div style="padding: 15px 15px;">
+                        <div class="layui-row layui-col-space10">
+                            <a href="javascript:;">
                                 <div class="layui-col-xs5">
                                     <div class="grid-demo grid-demo-bg1">
-                                        <div style="width: 100%; height: 200px;background-color: #1E9FFF"
-                                             id="img">
-                                            <img src={{item.text_image}}
-                                                 style="width: 100%;height: 100%">
+                                        <div style="width: 100%; height: 195px;background-color: #1E9FFF" id="img">
+                                            <img src={{item.text_image}} style="width: 100%;height: 100%">
                                         </div>
                                         <div style="text-align: center">
                                             <%--                                                                <span class="layui-badge layui-bg-green" id="di">3</span>--%>
                                             <br/>
-                                            <span class="layui-badge-rim" style="color: #1E9FFF; height: 20px;font-size: 17px">{{item.text_label}}</span>
+                                                <hr>
+                                            <span class="layui-badge-rim" style="color: #1E9FFF; height: 20px;font-size: 17px">审核中</span>
                                             <%--                                                                <h2 id="h2">java</h2>--%>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-xs7">
-                                    <div class="grid-demo">
-                                        <%--                                自动换行--%>
-                                        <div style="height: 190px; width: 100%;word-break:break-all;text-align: center;">
+                            </a>
+                            <div class="layui-col-xs7">
+                                <div class="grid-demo">
+                                    <%--                                自动换行--%>
+                                    <a href="javascript:;">
+                                        <div style="height:190px; width: 100%;word-break:break-all;text-align: center;">
                                             <br>
-                                            <h2 id="h1" style="text-align: center">
-                                                {{item.text_name}}</h2><br>
-                                            <span id="text" style="font-size: 15px;text-align: center">{{item.text_describe}}</span>
+                                            <h2  style="text-align: center">{{item.text_name}}</h2><br>
+                                            <span  style="font-size: 15px;text-align: center">{{item.text_describe}}</span>
                                         </div>
-                                        <hr/>
+                                    </a>
+                                    <hr/>
                                         <div class="layui-row" style="text-align: center">
-                                            <div class="layui-col-xs4">
-                                                <div class="grid-demo grid-demo-bg1" >
-                                                    <%--收藏--%>
-                                                    {{# if(item.text_collect=== 0){ }}
-                                                    <i class="layui-icon" title="收藏"
-                                                       aria-hidden="true" id="sou" value={{item.text_id}} value1={{item.text_collect}}>&#xe600;</i>
-                                                    {{# } else { }}
-                                                    <i class="layui-icon" title="取消收藏"
-                                                       aria-hidden="true" style="color: red" id="sou"  value={{item.text_id}} value1={{item.text_collect}}>&#xe600;</i>
-                                                    {{# } }}
-                                                </div>
+                                        
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo">
+                                                <i class="layui-icon" title="无法使用" aria-hidden="true">&#xe641;</i>
                                             </div>
-                                            <div class="layui-col-xs4">
-                                                <div class="grid-demo">
-                                                    <%--                                                                            分分享--%>
-<%--                                                        <a  href="javascript:;">--%>
-                                                    <i class="layui-icon" title="分享"
-                                                       style="color: #1E9FFF" id="fen"   value={{item.text_collect}}
-                                                       aria-hidden="true">&#xe641;</i>
-                                                </div>
+                                        </div>
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo grid-demo-bg1">
+                                                <i class="layui-icon" title="无法使用" aria-hidden="true">&#xe64c; </i>
                                             </div>
-                                            <div class="layui-col-xs4">
-                                                <div class="grid-demo grid-demo-bg1">
-                                                    <%--                                                                            打开--%>
-                                                    <a id="an_d" href={{item.text_link}} target="_blank"><i
-                                                            class="layui-icon" title="访问"
-                                                            style="color: #2b9f2e" id="lian"
-                                                            aria-hidden="true">&#xe64c; </i></a>
-                                                       
-                                                </div>
+                                        </div>
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo grid-demo-bg1" >
+                                                <i class="layui-icon" title="取消申请" style="color: red;"
+                                                   aria-hidden="true" id="sou" value={{item.text_id}} >&#x1007;</i>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                            
                             </div>
-                        
                         </div>
-<%--                    </a>--%>
+                    </div>
                 </div>
             </div>
         </li>
+
+        {{# } else if(item.text_status === 1){ }}
+
+        <li v-for="site in sites" class="layui-col-space15">
+            <div class="layui-col-md3">
+                <div class="layui-panel">
+                
+                    <div style="padding: 15px 15px;">
+                        <div class="layui-row layui-col-space10">
+                            <a href="javascript:;">
+                                <div class="layui-col-xs5">
+                                    <div class="grid-demo grid-demo-bg1">
+                                        <div style="width: 100%; height: 195px;background-color: #1E9FFF" id="img">
+                                            <img src={{item.text_image}} style="width: 100%;height: 100%">
+                                        </div>
+                                        <div style="text-align: center">
+                                            <%--                                                                <span class="layui-badge layui-bg-green" id="di">3</span>--%>
+                                            <br/>
+                                            <hr>
+                                            <span class="layui-badge-rim" style="color: red; height: 20px;font-size: 17px">未通过</span>
+                                            <%--                                                                <h2 id="h2">java</h2>--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="layui-col-xs7">
+                                <div class="grid-demo">
+                                    <%--                                自动换行--%>
+                                    <a href="javascript:;" >
+                                        <div style="height: 190px; width: 100%;word-break:break-all;text-align: center;">
+                                            <br>
+                                            <h2 style="text-align: center">{{item.text_name}}</h2><br>
+                                            <span  style="font-size: 15px;text-align: center">{{item.text_describe}}</span>
+                                        </div>
+                                    </a>
+                                    <hr/>
+                                    <div class="layui-row" style="text-align: center">
+                                    
+<%--                                        <div class="layui-col-xs4">--%>
+<%--                                            <div class="grid-demo">--%>
+<%--                                                <i class="layui-icon" title="分享"--%>
+<%--                                                   style="color: #1E9FFF" id="fen"   value={{item.text_collect}}--%>
+<%--                                                   aria-hidden="true">&#xe641;</i>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="layui-col-xs4">--%>
+<%--                                            <div class="grid-demo grid-demo-bg1">--%>
+<%--                                                &lt;%&ndash;                                                                            打开&ndash;%&gt;--%>
+<%--                                                <a id="an_d" href={{item.text_link}} target="_blank"><i--%>
+<%--                                                        class="layui-icon" title="访问"--%>
+<%--                                                        style="color: #2b9f2e" id="lian"--%>
+<%--                                                        aria-hidden="true">&#xe64c; </i></a>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--    --%>
+                                        <div class="layui-col-xs12">
+                                            <div class="grid-demo grid-demo-bg1" style="text-align: center">
+                                                <i class="layui-icon" title="删除" style="color: red;"
+                                                   aria-hidden="true" id="sou" value={{item.text_id}}>&#x1007;</i>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{# } else { }}
+        <li v-for="site in sites" class="layui-col-space15">
+            <div class="layui-col-md3">
+                <div class="layui-panel">
+                
+                    <div style="padding: 15px 15px;">
+                        <div class="layui-row layui-col-space10">
+                            <a href={{item.text_link}} target="_blank">
+                                <div class="layui-col-xs5">
+                                    <div class="grid-demo grid-demo-bg1">
+                                        <div style="width: 100%; height: 195px;background-color: #1E9FFF" id="img">
+                                            <img src={{item.text_image}} style="width: 100%;height: 100%">
+                                        </div>
+                                        <div style="text-align: center">
+                                            <%--                                                                <span class="layui-badge layui-bg-green" id="di">3</span>--%>
+                                            <br/>
+                                            <hr>
+                                            <span class="layui-badge-rim" style="color: #37b54c; height: 20px;font-size: 17px">已通过</span>
+                                            <%--                                                                <h2 id="h2">java</h2>--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="layui-col-xs7">
+                                <div class="grid-demo">
+                                    <%--                                自动换行--%>
+                                    <a href={{item.text_link}} target="_blank">
+                                        <div style="height:190px; width: 100%;word-break:break-all;text-align: center;">
+                                            <br>
+                                            <h2 id="h1" style="text-align: center">{{item.text_name}}</h2><br>
+                                            <span id="text" style="font-size: 15px;text-align: center">{{item.text_describe}}</span>
+                                        </div>
+                                    </a>
+                                    <hr/>
+                                
+                                    <div class="layui-row" style="text-align: center">
+                                    
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo">
+                                                <i class="layui-icon" title="分享"
+                                                   style="color: #1E9FFF" id="fen"   value={{item.text_collect}}
+                                                   aria-hidden="true">&#xe641;</i>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo grid-demo-bg1">
+                                                <%--                                                                            打开--%>
+                                                <a id="an_d" href={{item.text_link}} target="_blank"><i
+                                                        class="layui-icon" title="访问"
+                                                        style="color: #2b9f2e" id="lian"
+                                                        aria-hidden="true">&#xe64c; </i></a>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-xs4">
+                                            <div class="grid-demo grid-demo-bg1" >
+                                                <i class="layui-icon" title="删除" style="color: red;"
+                                                   aria-hidden="true" id="sou" value={{item.text_id}}>&#x1007;</i>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                            
+                                </div>
+                            </div>
+                    
+                        </div>
+                
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </li>
+        {{#  } }}
         {{# }); }}
         {{# if(d.list.length === 0){ }}
         无数据
@@ -271,7 +434,9 @@
                 data: JSON.stringify({username: username}),
                 contentType: "application/json;charset=UTF-8",
                 success: function (res) {
-                    $("#image").attr("src", res);
+                   if(res !== null){
+                       $("#image").attr("src", res);
+                   }
                     // console.log(res);
                     // console.log("---------------------------------------" + username);
                 }
@@ -410,19 +575,19 @@
                 } else if (text_label === "" || text_label === null || text_label === undefined) {
                     layer.msg("标红的不能为空！！");
                 } else {
-                    console.log(
-                        JSON.stringify(
-                            {
-                                text_name: text_name,
-                                text_describe: text_describe,
-                                text_link: text_link,
-                                text_label: text_label,
-                                text_detailed: text_detailed,
-                                text_image: text_image,
-                                user_name: text_name,
-                            }
-                        )
-                    )
+                    // console.log(
+                    //     JSON.stringify(
+                    //         {
+                    //             text_name: text_name,
+                    //             text_describe: text_describe,
+                    //             text_link: text_link,
+                    //             text_label: text_label,
+                    //             text_detailed: text_detailed,
+                    //             text_image: text_image,
+                    //             user_name: text_name,
+                    //         }
+                    //     )
+                    // )
                     $.ajax({
                         type: "post",
                         url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend",
@@ -444,13 +609,13 @@
                                 layer.msg("提交成功请等待管理员审核", {icon: 6, offset: "auto", time: 2000});
                                 sessionStorage.setItem("image", "1");
                                 setTimeout(function () {
-                                    window.location.reload();
+                                    window.location.reload();  //刷新页面
                                 }, 2100);
                             }
                             if (data.msg === false) {
                                 layer.alert("修改失败", 5);
                             }
-                            console.log(data.data);
+                            // console.log(data.data);
                         }
                     })
                 }
@@ -544,8 +709,8 @@
                 elem: 'demo1'
                 ,count:count
                 ,limit:12
-                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-                ,limits:[12,20,32]
+                ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+                // ,limits:[12,20,32]
                 , jump: function (obj) {
                     // this.count = 22;
                     console.log(obj);
@@ -584,7 +749,7 @@
         })
     }
     
-    setTimeout(send,3000)  //延迟0.5秒执行
+    setTimeout(send,1500)  //延迟0.5秒执行
 
 </script>
 
@@ -595,16 +760,50 @@
         layer.msg('响应点击事件');
         //获取li动态value值
         // console.log($(this).attr("value"));
-        let a = $(this).attr("value");
-        let b = $(this).attr("value1");
-        // let n =   a.replace(/-/g,'');
-        console.log(a+"  ");
-        console.log(b+"  ")
-        // console.log(n[2]+"  ")
+        let text_id = $(this).attr("value");
+        let username = sessionStorage.getItem("userid");
+        //触发事件
+        layui.use('layer', function(){ //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+            layer.open({
+                content: '你确定要删除改内容'
+                ,title:'温馨提示'
+                ,icon:'5'
+                ,btn: ['删除', '再考虑']
+                ,yes: function(index, layero){
+                    //按钮【按钮一】的回调
+                    $.ajax({
+                        type: "get",
+                        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/delete?text_id="+text_id+"&username="+username,
+                        async: true,
+                        dataType: "json",
+                        contentType: "application/json;charset=UTF-8",
+                        success: function (res) {
+                            if (res === true){
+                                layer.msg("删除成功",{icon:1});
+                                setTimeout(function () {
+                                    window.location.reload();  //刷新页面
+                                }, 1500);
+                            }else {
+                                layer.msg("删除失败",{icon:2});
+                            }
+                        }
+                    })
+                }
+                ,btn2: function(index, layero){
+                    layer.msg("的确重要",{icon:6});
+                }
+                ,cancel: function(){
+                    //右上角关闭回调
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+            });
+        })
     })
-    .on('click', '#fen', function() {
-        layer.msg('响sss点击事件');
-    })
+
+    // .on('click', '#fen', function() {
+    //     layer.msg('响sss点击事件');
+    // })
     //    动态悬停
     // .on('mouseenter', '#fen', function() {
     //     let a = $(this).attr("value");

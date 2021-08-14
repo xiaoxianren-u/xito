@@ -3,7 +3,7 @@
   <component name="MyBatisCodeHelperDatasource">
     <option name="projectProfile">
       <ProjectProfile>
-        <option name="genSqlFilePath" value="$PROJECT_DIR$/src/main/java/com/yz/pojo" />
+        <option name="genSqlFilePath" value="$PROJECT_DIR$/src/main/java/com/yz/sql" />
       </ProjectProfile>
     </option>
   </component>

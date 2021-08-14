@@ -12,6 +12,7 @@
                     <if test="text_image != null and text_image != ''">text_image,</if>
                     <if test="text_detailed != null and text_detailed != ''">text_detailed,</if>
                     <if test="text_rec_id != null">text_rec_id,</if>
+                    <if test="text_date != null and text_date != ''">text_date,</if>
                 </trim>
             )values (
                 <trim suffixOverrides=",">
@@ -22,11 +23,12 @@
                     <if test="text_image != null and text_image != ''">#{text_image},</if>
                     <if test="text_detailed != null and text_detailed != ''">#{text_detailed},</if>
                     <if test="text_rec_id != null">#{text_rec_id},</if>
+                    <if test="text_date != null and text_date != ''">#{text_date},</if>
                 </trim>
             )
         </insert>
 
-<!--        内容条数-->
+<!--        个人内容条数-->
 
         <select id="selectTextWenCount" resultType="int">
             select count(*) from xiton.text_wen
@@ -34,10 +36,61 @@
         </select>
 
 
-<!--        显示所有内容数据-->
+<!--        显示个人推荐内容数据-->
+<!--order by text_id desc-->
         <select id="selectTextWen" resultType="com.yz.pojo.TextWen">
             select * from xiton.text_wen
             where  text_rec_id = #{id}
+
             Limit #{curr},#{limit}
         </select>
+<!--       前端内容条数 -->
+        <select id="selectTextWenCountData" resultType="int">
+            select COUNT(*) from xiton.text_wen
+            <where>
+                <if test="text_label != null and text_label != ''">
+                    and text_label = #{text_label}
+                </if>
+            </where>
+        </select>
+<!--        前端内容-->
+        <select id="selectTextWenData" resultType="com.yz.pojo.TextWen">
+            select * from xiton.text_wen
+            <where>
+                <if test="text_label != null and text_label != ''">
+                    and text_label = #{text_label}
+                </if>
+            </where>
+            Limit #{curr},#{limit}
+        </select>
+
+
+        <select id="selectCll" resultType="com.yz.pojo.Cllect">
+            select * from xiton.cllect
+            where username = #{username}
+        </select>
+        <!--        添加收藏-->
+        <insert id="insertCllect">
+                insert into xiton.cllect(
+                 <trim suffixOverrides=",">
+                    <if test="text_id != null">text_id,</if>
+                    <if test="username != null and username != ''">username,</if>
+                    <if test="cll_data != null and cll_data != ''">cll_data,</if>
+                </trim>
+            )values (
+                <trim suffixOverrides=",">
+                    <if test="text_id != null">#{text_id},</if>
+                    <if test="username != null and username != ''">#{username},</if>
+                    <if test="cll_data != null and cll_data != ''">#{cll_data},</if>
+                </trim>
+                )
+        </insert>
+<!--        删除作者内容-->
+        <delete id="selectText">
+            delete from xiton.text_wen
+            where text_id = #{text_id} and text_rec_id =#{text_rec_id}
+        </delete>
+
+
+
 </mapper>

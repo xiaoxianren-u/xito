@@ -80,4 +80,9 @@ public class TextWen {
      * 用户名
      */
     private String user_name;
+    /**
+     * 收藏状态
+     */
+    private String cll_status;
+
 }
