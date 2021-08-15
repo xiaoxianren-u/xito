@@ -84,4 +84,9 @@ public class User {
      */
 
     private String image;
+
+    /**
+     * 用户名称
+     */
+    private String name;
 }

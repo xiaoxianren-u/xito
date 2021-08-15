@@ -109,6 +109,10 @@
     <!-- 这里的 checked 的状态只是演示 -->
     <input type="checkbox" name="sex" mid1="{{d.username}}"  lay-skin="switch" lay-text="" lay-filter="sexDemo1" {{ d.stats == 1 ? 'checked' : '' }}>
 </script>
+
+<script id="img">
+    <div><img style="height:35px;width:35px;" src="{{ d.image}}" ></div>
+</script>
 <script>
     
     
@@ -131,7 +135,7 @@
             });
         });
 
-        //执行一个 table 实例
+        //执行一个 table 实例数据表
         table.render({
             elem: '#demo'
             ,width:'98%'
@@ -152,15 +156,17 @@
                 ,{field: 'username', title: '用户名', width:180}
                 ,{field: 'stati', title: '普通用户权限', width:120, align: 'center' ,templet: '#switchTpl'}
                 ,{field: 'stats', title: '管理员权限', width:120,templet: '#switchTps', unresize: true}
-                ,{field: 'email', title: '用户邮箱', width:180}
+                ,{field: 'email', title: '用户邮箱', width:160}
+                ,{field: 'image', title: '头像', width:65,templet: '#img'}
                 ,{field: 'integral', title: '积分', width: 90, sort: true, totalRow: true}
                 ,{field: 'codecurrency', title: '码币', width: 80, sort: true, totalRow: '{{ parseInt(d.TOTAL_NUMS) }} 分'}
-                ,{field: 'phone', title: '电话', width:170}
+                ,{field: 'phone', title: '电话', width:110}
                 ,{field: 'sex', title: '性别', width:80, sort: true}
-                ,{field: 'interest', title: '个人兴趣', width:300}
-                ,{field: 'summary', title: '个人简介', width: 300}
-                ,{field: 'area', title: '所在地区', width: 300}
-                ,{field: 'school', title: '所在学校', width: 250}
+                ,{field: 'name', title: '名称', width: 100}
+                ,{field: 'interest', title: '个人兴趣', width:200}
+                ,{field: 'summary', title: '个人简介', width: 200}
+                ,{field: 'area', title: '所在地区', width: 150}
+                ,{field: 'school', title: '所在学校', width: 150}
                 ,{field: 'time', title: '注册时间', width: 200}
                 ,{fixed: 'right', width: 150, align:'center', toolbar: '#barDemo'}
             ]]
@@ -198,24 +204,56 @@
             console.log(username)
             console.log(obj.elem.checked);
             var stats = obj.elem.checked?"1":"0";
+            
             console.info('isManager:' + stats);
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/sys/houtai//userxi/sta",
-                async: true,
-                dataType: "json",
-                data: JSON.stringify({username:username,stats:stats}),
-                contentType: "application/json;charset=UTF-8",
-                success: function (data) {
-                    // console.log(data);
-                    if(data === true){
-                        layer.alert("成功修改", {icon: 6});
-                    }else {
-                        layer.alert("修改失败", {icon: 5});
-                    }
-                   
-                }
+            
+            //二次验证
+            layer.prompt({
+                formType: 1
+                ,title: '敏感操作，请验证口令'
+            }, function(value, index){
+                layer.close(index);
+                layer.confirm('确定修改管理权限吗？', function(index) {
+                    //执行 Ajax 后重载
+                    $.ajax({
+                        type: "post",
+                        url: "${pageContext.request.contextPath}/login/yan",
+                        async: true,
+                        dataType: "json",
+                        data:JSON.stringify({username:'admin123',password:value}),
+                        contentType: "application/json;charset=UTF-8",
+                        success: function (res) {
+                            console.log(res);
+                            if (res === true){
+                                $.ajax({
+                                    type: "post",
+                                    url: "${pageContext.request.contextPath}/sys/houtai/userxi/sta",
+                                    async: true,
+                                    dataType: "json",
+                                    data: JSON.stringify({username:username,stats:stats}),
+                                    contentType: "application/json;charset=UTF-8",
+                                    success: function (data) {
+                                        if(data === true){
+                                            layer.alert("成功修改", {icon: 6});
+                                        }else {
+                                            layer.alert("修改失败", {icon: 5});
+                                        }
+
+                                    }
+                                });
+                            }else {
+                                layer.msg('口令错误');
+                                setTimeout(function () {
+                                    window.location.reload();  //刷新页面
+                                }, 800);
+                            }
+                        }
+                    })
+                    // table.reload('LAY-user-back-manage');
+                    
+                });
             });
+            
         });
 
         

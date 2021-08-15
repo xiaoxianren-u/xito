@@ -71,10 +71,8 @@
                 <div class="layui-col-md2">
                     <ul class="layui-nav layui-bg-green">
                         <li class="layui-nav-item">
-                            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img" id="image">我</a>
                             <dl class="layui-nav-child">
-                                <dd><a href="javascript:;">修改信息</a></dd>
-                                <dd><a href="javascript:;">安全管理</a></dd>
                                 <dd><a href="javascript:;">退了</a></dd>
                             </dl>
                         </li>
@@ -102,6 +100,27 @@
     <%@ include file="../../head.jsp"%>
 </div>
 
-
+<script>
+    function image(){
+        if(sessionStorage.getItem("userid") !== undefined && sessionStorage.getItem("userid") !== null && sessionStorage.getItem("userid") !== "") {
+            let username  = sessionStorage.getItem("userid");
+            $.ajax({
+                type: 'post',
+                url: "${pageContext.request.contextPath}/sys/qiantai/geren/indimage",
+                async: true,
+                dataType: 'json',
+                data: JSON.stringify({username:username}),
+                contentType: "application/json;charset=UTF-8",
+                success:function (res) {
+                    // 不为空时在回显头像
+                    if (res !== null){
+                        $("#image").attr("src",res);
+                    }
+                }
+            })
+        }
+    }
+    window.onload = image();
+</script>
 </body>
 </html>

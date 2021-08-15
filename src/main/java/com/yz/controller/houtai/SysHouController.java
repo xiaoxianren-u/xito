@@ -8,10 +8,7 @@ import com.yz.util.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -36,7 +33,17 @@ public class SysHouController {
     private UserMapperService userMapperService;
 
     /**
-     * 登录页面
+     * 前端登录页面
+     * @return
+     */
+
+    @RequestMapping("/")
+    public String qianloginAction(){
+        return "qianlogin";
+    }
+
+    /**
+     * 后端登录页面
      * @return
      */
 
@@ -57,11 +64,12 @@ public class SysHouController {
         String passwordJiami = Md_5.Stringcode(user.getPassword());
         System.out.println("user = " + user);
         HashMap<String, java.io.Serializable> map = new HashMap<String, java.io.Serializable>();
-
+        int n =0;
         List<User> list = userMapperService.sele();
         for (User s : list){
             if (s.getUsername().equals(user.getUsername())){
                 //判断密码
+                n = 1;
                 if (s.getPassword().equals(passwordJiami)){
                     map.put("bool",true);
                     session.setAttribute("userid",s.getUsername());
@@ -89,6 +97,10 @@ public class SysHouController {
                 }
             }
         }
+//       账号错误
+        if (n== 0){
+            return JSON.toJSONString(null);
+        }
         System.out.println("map = " + map);
         return JSON.toJSONString(map);
     }
@@ -112,7 +124,6 @@ public class SysHouController {
             return JSON.toJSONString("3");
         }
 
-
         List<User> list = userMapperService.sele();
         for (User s : list){
             if (s.getUsername().equals(user.getUsername())){
@@ -121,8 +132,25 @@ public class SysHouController {
         }
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         user.setTime(date);
-
         n = userMapperService.insert(user);
         return n > 0 ? JSON.toJSONString("1"):JSON.toJSONString("0");
     }
+
+
+    /**
+     * 二重验证
+     * @return
+     */
+    @RequestMapping(value = "/yan", method = RequestMethod.POST)
+    @ResponseBody
+    public String yanUser(@RequestBody User user){
+        System.out.println("user = " + user);
+        String passwords = Md_5.Stringcode(user.getPassword());
+        String usernames =  userMapperService.selectUserYan(user.getUsername());
+        if (usernames.equals(passwords)){
+            return JSON.toJSONString(true);
+        }
+        return JSON.toJSONString(false);
+    }
+
 }

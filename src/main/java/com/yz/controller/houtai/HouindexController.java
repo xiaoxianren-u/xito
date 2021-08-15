@@ -3,13 +3,12 @@ package com.yz.controller.houtai;
 import com.alibaba.fastjson.JSON;
 import com.yz.pojo.User;
 import com.yz.service.SysUserxiMapperService;
+import com.yz.util.Md_5;
 import com.yz.util.Session;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -96,5 +95,8 @@ public class HouindexController {
         int n = sysUserxiMapperService.updateStat(user);
         return JSON.toJSONString(n > 0);
     }
+
+
+
 
 }

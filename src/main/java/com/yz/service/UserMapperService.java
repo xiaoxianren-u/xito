@@ -1,6 +1,7 @@
 package com.yz.service;
 
 import com.yz.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,4 +29,11 @@ public interface UserMapperService {
      */
 
     int insert(User user);
+
+    /**
+     * 二重验证
+     * @param username
+     * @return
+     */
+    String selectUserYan(@Param("username") String username);
 }

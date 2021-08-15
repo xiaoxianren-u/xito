@@ -35,7 +35,7 @@
             min-height: 100%;
         }
         main {
-            padding-bottom: 940px;
+            padding-bottom: 920px;
         }
         header, footer{
             line-height: 0px;
@@ -422,10 +422,8 @@
 <%--头像--%>
 <script>
     function image() {
-        console.log("---------------------------------------");
         if (sessionStorage.getItem("userid") !== undefined && sessionStorage.getItem("userid") !== null && sessionStorage.getItem("userid") !== "") {
             let username = sessionStorage.getItem("userid");
-            console.log("---------------------------------------" + username);
             $.ajax({
                 type: 'post',
                 url: "${pageContext.request.contextPath}/sys/qiantai/geren/indimage",
@@ -437,13 +435,10 @@
                    if(res !== null){
                        $("#image").attr("src", res);
                    }
-                    // console.log(res);
-                    // console.log("---------------------------------------" + username);
                 }
             })
         }
     }
-
     window.onload = image();
 </script>
 <%--属性鼠标悬停提示--%>
@@ -496,17 +491,12 @@
                 // 预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
                     //图片链接（base64） 回显
-                    // console.log(result);
                 });
                 element.progress('demo', '0%'); //进度条复位
                 layer.msg('上传中', {icon: 16, time: 0});
-                // console.log(obj);
-
-
             }
             , done: function (res) {
                 //如果上传失败
-                console.log(res);
                 if (res.code === 1) {
                     const image = res.data.src;
                     $('#demo').attr('src', image);
@@ -516,7 +506,6 @@
                     layer.msg(res.msg);
                 }
                 //上传成功的一些操作
-                //……
                 $('#demoText').html(''); //置空上传失败的状态
             }
             , error: function () {
@@ -563,10 +552,8 @@
                 text_image = sessionStorage.getItem("image");
                 let user_name = sessionStorage.getItem("userid");
                 if (text_image === "1" || text_image === null || text_image === undefined || text_image === "") {
-                    console.log("==================");
                     text_image = "/static/imager/mo.jpg";
-                }
-                if (text_name === "" || text_name === null || text_name === undefined) {
+                }if (text_name === "" || text_name === null || text_name === undefined) {
                     layer.msg("标红的不能为空！！");
                 } else if (text_describe === "" || text_describe === null || text_describe === undefined) {
                     layer.msg("标红的不能为空！！");
@@ -575,19 +562,6 @@
                 } else if (text_label === "" || text_label === null || text_label === undefined) {
                     layer.msg("标红的不能为空！！");
                 } else {
-                    // console.log(
-                    //     JSON.stringify(
-                    //         {
-                    //             text_name: text_name,
-                    //             text_describe: text_describe,
-                    //             text_link: text_link,
-                    //             text_label: text_label,
-                    //             text_detailed: text_detailed,
-                    //             text_image: text_image,
-                    //             user_name: text_name,
-                    //         }
-                    //     )
-                    // )
                     $.ajax({
                         type: "post",
                         url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend",
@@ -604,7 +578,7 @@
                         }),
                         contentType: "application/json;charset=UTF-8",
                         success: function (data) {
-                            console.log(data + "++++++++++++++++");
+                            // console.log(data + "++++++++++++++++");
                             if (data.msg === true) {
                                 layer.msg("提交成功请等待管理员审核", {icon: 6, offset: "auto", time: 2000});
                                 sessionStorage.setItem("image", "1");
@@ -626,47 +600,7 @@
 </script>
 
 </body>
-<%-- 下拉表--%>
-<script>
 
-    layui.use(function () {
-        var dropdown = layui.dropdown,
-            layer = layui.layer,
-            laypage = layui.laypage
-
-        //初演示
-        dropdown.render({
-            elem: '.demo1'
-            , data: [{
-                title: '全&nbsp;&nbsp;&nbsp;&nbsp;部'
-                , id: 100
-            }, {
-                title: '审核中'
-                , id: 101
-            }, {
-                title: '已发布'
-                , id: 102
-            }, {
-                title: '拒&nbsp;&nbsp;&nbsp;&nbsp;绝'
-                , id: 103
-            }]
-            , click: function (obj) {
-                $("#bnt-xl").html(obj.title);
-                layer.tips(obj.title, this.elem, {tips: [1, '#5FB878']})
-            }
-        });
-
-        
-
-    })
-
-
-</script>
-
-
-<script>
-
-</script>
 
 <%--页面内容--%>
 <script>
@@ -681,16 +615,15 @@
     
     var count = 0;
     let username = sessionStorage.getItem("userid");
-    
-        $.ajax({
+    let text_status = 3;
+            $.ajax({
             type: "get",
-            url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/count?username="+username,
+            url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/count?username="+username+"&text_status="+text_status,
             async: true,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             success: function (res) {
                count = res.count;
-                console.log(count + "dffd");
                 loading("加载中");    //开始加载
             }
         })
@@ -699,41 +632,26 @@
         layui.use('laytpl', function () {
             var laytpl = layui.laytpl,
                 laypage = layui.laypage
-
             var list = null;
-            let username = sessionStorage.getItem("userid");
             // 获取内容总数
-            
             //分页
             laypage.render({
                 elem: 'demo1'
                 ,count:count
                 ,limit:12
                 ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
-                // ,limits:[12,20,32]
                 , jump: function (obj) {
-                    // this.count = 22;
-                    console.log(obj);
-                    let limit =  obj.limit;
-                    let curr = obj.curr;
-                    console.log(obj.limit);
+                    let limit =  obj.limit;   //条数
+                    let curr = obj.curr;     //页数
                     $.ajax({
-                        type: "post",
-                        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/list?username="+username+"&curr="+curr+"&limit="+limit,
+                        type: "get",
+                        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/list?username="+username+"&curr="+curr+"&limit="+limit+"&text_status="+text_status,
                         async: true,
                         dataType: "json",
-                        data: JSON.stringify({
-                            username:username,
-                            limit:limit,
-                            curr:curr,
-                        }),
                         contentType: "application/json;charset=UTF-8",
                         success: function (res) {
                             list = res.data;
-                            var data = {
-                                "list": list,
-                            }
-                            console.log(data);
+                            var data = {"list": list,}
                             layer.closeAll();   //结束加载
                             layer.msg("欢迎使用",{icon:6});
                             var getTpl = app.innerHTML
@@ -741,16 +659,92 @@
                             laytpl(getTpl).render(data, function (html) {
                                 view.innerHTML = html;
                             });
-
                         }
                     });
                 }
-            });
+            })
         })
     }
-    
-    setTimeout(send,1500)  //延迟0.5秒执行
+    setTimeout(send,1000)  //延迟0.5秒执行
+</script>
 
+<script>
+    layui.use(function () {
+        var  dropdown = layui.dropdown
+        dropdown.render({
+            elem: '.demo1'
+            , data: [{
+                title: '全&nbsp;&nbsp;&nbsp;&nbsp;部'
+                , id: 3
+            }, {
+                title: '审核中'
+                , id: 0
+            }, {
+                title: '已发布'
+                , id: 2
+            }, {
+                title: '拒&nbsp;&nbsp;&nbsp;&nbsp;绝'
+                , id: 1
+            }]
+            , click: function (obj) {
+                $("#bnt-xl").html(obj.title);
+                layer.tips(obj.title, this.elem, {tips: [1, '#5FB878']})
+                text_status = obj.id;
+                $.ajax({
+                    type: "get",
+                    url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/count?username="+username+"&text_status="+text_status,
+                    async: true,
+                    dataType: "json",
+                    contentType: "application/json;charset=UTF-8",
+                    success: function (res) {
+                        count = res.count;
+                        loading("加载中");    //开始加载
+                    }
+                })
+
+                function send(){
+                    layui.use('laytpl', function () {
+                        var laytpl = layui.laytpl,
+                            laypage = layui.laypage
+
+                        var list = null;
+                        let username = sessionStorage.getItem("userid");
+                        // 获取内容总数
+                        //分页
+                        laypage.render({
+                            elem: 'demo1'
+                            ,count:count
+                            ,limit:12
+                            ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+                            , jump: function (obj) {
+                                let limit =  obj.limit;   //条数
+                                let curr = obj.curr;    //页数
+                                $.ajax({
+                                    type: "get",
+                                    url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/list?username="+username+"&curr="+curr+"&limit="+limit+"&text_status="+text_status,
+                                    async: true,
+                                    dataType: "json",
+                                    contentType: "application/json;charset=UTF-8",
+                                    success: function (res) {
+                                        list = res.data;
+                                        var data = {"list": list,}
+                                        layer.closeAll();   //结束加载
+                                        layer.msg("欢迎使用",{icon:6});
+                                        var getTpl = app.innerHTML
+                                            , view = document.getElementById('view');
+                                        laytpl(getTpl).render(data, function (html) {
+                                            view.innerHTML = html;
+                                        });
+                                    }
+                                });
+                            }
+                        })
+                    })
+                }
+                setTimeout(send,500)  //延迟0.5秒执行
+            }
+        });
+    })
 </script>
 
 <%--收藏点击事件--%>
@@ -799,22 +793,6 @@
                 }
             });
         })
-    })
-
-    // .on('click', '#fen', function() {
-    //     layer.msg('响sss点击事件');
-    // })
-    //    动态悬停
-    // .on('mouseenter', '#fen', function() {
-    //     let a = $(this).attr("value");
-    //     console.log(a);
-    //         layer.msg("ssssssssssssssssss");
-    //
-    //     })
-
-    ;
-
-
-
+    });
 </script>
 </html>

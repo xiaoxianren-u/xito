@@ -118,12 +118,10 @@
 </body>
 
 <script>
-    
+    //头像
     function image(){
-        console.log("---------------------------------------");
         if(sessionStorage.getItem("userid") !== undefined && sessionStorage.getItem("userid") !== null && sessionStorage.getItem("userid") !== "") {
             let username  = sessionStorage.getItem("userid");
-            console.log("---------------------------------------"+username);
             $.ajax({
                 type: 'post',
                 url: "${pageContext.request.contextPath}/sys/qiantai/geren/indimage",
@@ -136,9 +134,6 @@
                     if (res !== null){
                         $("#image").attr("src",res);
                     }
-                   
-                    console.log(res);
-                    console.log("---------------------------------------"+username);
                 }
             })
         }
@@ -195,7 +190,7 @@
             $("#denglv").html("登录");
             name="0";
         }else {
-            window.location = "${pageContext.request.contextPath}/login/yz"
+            window.location = "${pageContext.request.contextPath}/login/"
         }
     })
     

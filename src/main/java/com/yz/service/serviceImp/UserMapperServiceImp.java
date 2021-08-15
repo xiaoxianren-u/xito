@@ -44,4 +44,13 @@ public class UserMapperServiceImp implements UserMapperService {
         return userMapper.insert(user1);
     }
 
+    /**
+     * 二重验证
+     * @param username
+     * @return
+     */
+    @Override
+    public String selectUserYan(String username) {
+        return userMapper.selectUserYan(username);
+    }
 }

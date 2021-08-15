@@ -16,7 +16,8 @@
                area,
                school,
                time,
-               image
+               image,
+               name
         from xiton.user
         Limit #{page},#{limit}
     </select>

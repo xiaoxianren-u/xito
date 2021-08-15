@@ -44,8 +44,8 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
      */
 
     @Override
-    public int selectTextWenCount(Integer id) {
-        return sysTextWenMapper.selectTextWenCount(id);
+    public int selectTextWenCount(Integer id,int text_status) {
+        return sysTextWenMapper.selectTextWenCount(id,text_status);
     }
 
     /**
@@ -57,8 +57,8 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
      */
 
     @Override
-    public List<TextWen> selectTextWen(Integer id, int curr, int limit) {
-        return sysTextWenMapper.selectTextWen(id, curr, limit);
+    public List<TextWen> selectTextWen(Integer id, int curr, int limit,int text_status) {
+        return sysTextWenMapper.selectTextWen(id, curr, limit,text_status);
     }
 
     /**

@@ -65,10 +65,10 @@ public class QiantaiGerenTuJianController {
 
     @RequestMapping(value = "/recommend/count" , method = RequestMethod.GET)
     @ResponseBody
-    public String recommendCount(@RequestParam(value = "username") String username){
+    public String recommendCount(@RequestParam(value = "username") String username,@RequestParam(value = "text_status") Integer text_status){
         HashMap<String, Integer> map = new HashMap<>();
         User user = sysUserxiMapperService.userid(username);
-        int count = sysTextWenMapperService.selectTextWenCount(user.getId());
+        int count = sysTextWenMapperService.selectTextWenCount(user.getId(),text_status);
         map.put("count",count);
         return JSON.toJSONString(map);
     }
@@ -81,14 +81,15 @@ public class QiantaiGerenTuJianController {
      * @return
      */
 
-    @RequestMapping(value = "/recommend/list",method = RequestMethod.POST)
+    @RequestMapping(value = "/recommend/list",method = RequestMethod.GET)
     @ResponseBody
-    public String recommendList(@RequestParam(value = "username") String username, @RequestParam(value = "curr") Integer curr, @RequestParam(value = "limit") Integer limit) {
+    public String recommendList(@RequestParam(value = "username") String username, @RequestParam(value = "curr") Integer curr, @RequestParam(value = "limit") Integer limit,@RequestParam(value = "text_status") Integer text_status) {
         HashMap<String, Object> map = new HashMap();
 //        根据用户名获取id
         User user = sysUserxiMapperService.userid(username);
+
         curr = (curr - 1) * limit;
-        List<TextWen> list = sysTextWenMapperService.selectTextWen(user.getId(),curr,limit);
+        List<TextWen> list = sysTextWenMapperService.selectTextWen(user.getId(),curr,limit,text_status);
         map.put("data",list);
         System.out.println("list = " + list);
         return JSON.toJSONString(map);
@@ -144,15 +145,20 @@ public class QiantaiGerenTuJianController {
         return JSON.toJSONString(n>0?1:2);
     }
 
+    /**
+     * 删除作者内容
+     * @param text_id
+     * @param username
+     * @return
+     */
+
     @RequestMapping(value = "/recommend/delete",method = RequestMethod.GET)
     @ResponseBody
     public String recommendedDelete(@RequestParam(value = "text_id") Integer text_id,@RequestParam(value = "username") String username){
         TextWen textWen = new TextWen();
-//        System.out.println("text_id = " + text_id+"  "+username);
         textWen.setText_id(text_id);
         User user = sysUserxiMapperService.userid(username);
         textWen.setText_rec_id(user.getId());
-//        System.out.println("textWen = " + textWen);
         int n =  sysTextWenMapperService.selectText(textWen);
         return JSON.toJSONString(n>0);
     }

@@ -30,7 +30,7 @@ public interface SysTextWenMapperService {
      * @param id 用户id
      * @return 数量
      */
-    int selectTextWenCount(@Param("id") Integer id);
+    int selectTextWenCount(@Param("id") Integer id,@Param("text_status") int text_status);
 
 
     /**
@@ -38,7 +38,7 @@ public interface SysTextWenMapperService {
      * @param id
      * @return 内容列表
      */
-    List<TextWen> selectTextWen(Integer id,int curr,int limit);
+    List<TextWen> selectTextWen(Integer id,int curr,int limit,int text_status);
 
     /**
      *前端内容条数

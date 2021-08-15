@@ -82,7 +82,7 @@
                     <div class="layui-col-xs10">
                         <div class="grid-demo">
 
-                            <div style="width: 100%;height: 1100px;text-align: center;">
+                            <div style="width: 100%;height: 1080px;text-align: center;">
                                 <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/geren/gerindex" name="test" style="width: 97%;height: 100%;"></iframe>
                             </div>
                         </div>

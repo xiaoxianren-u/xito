@@ -22,5 +22,10 @@
              </trim>
             )
         </insert>
+<!--        二重验证-->
+        <select id="selectUserYan" resultType="java.lang.String">
+                select password from xiton.user
+                where username = #{username}
+        </select>
 
 </mapper>

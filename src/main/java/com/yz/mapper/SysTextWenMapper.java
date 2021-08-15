@@ -29,16 +29,17 @@ public interface SysTextWenMapper {
      * @return 数量
      */
 
-    int selectTextWenCount(@Param("id") Integer id);
+    int selectTextWenCount(@Param("id") Integer id,@Param("text_status") int text_status);
 
     /**
      * 显示所有内容数据
      * @param id
      * @param curr
      * @param limit
+     * @param text_status
      * @return
      */
-    List<TextWen> selectTextWen(@Param("id") Integer id,@Param("curr")  int curr,@Param("limit")  int limit);
+    List<TextWen> selectTextWen(@Param("id") Integer id,@Param("curr")  int curr,@Param("limit")  int limit,@Param("text_status") int text_status);
 
 
     /**
@@ -50,7 +51,7 @@ public interface SysTextWenMapper {
 
 
     /**
-     * 显示所有内容数据
+     * 作者推荐内容数据
      * @param text_label
      * @param curr
      * @param limit

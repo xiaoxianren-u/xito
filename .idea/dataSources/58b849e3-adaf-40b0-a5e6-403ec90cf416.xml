@@ -1194,17 +1194,22 @@ SELECT|sys.sys_config
       <Comment>用户头像</Comment>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <index id="329" parent="289" name="username">
+    <column id="329" parent="289" name="name">
+      <Position>17</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <index id="330" parent="289" name="username">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="330" parent="289" name="PRIMARY">
+    <key id="331" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="331" parent="289" name="username">
+    <key id="332" parent="289" name="username">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>

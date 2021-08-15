@@ -1,6 +1,7 @@
 package com.yz.mapper;
 
 import com.yz.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,5 +27,12 @@ public interface UserMapper {
      */
 
     int insert(User user);
+
+    /**
+     * 二重验证
+     * @param username
+     * @return
+     */
+    String selectUserYan(@Param("username") String username);
 
 }
