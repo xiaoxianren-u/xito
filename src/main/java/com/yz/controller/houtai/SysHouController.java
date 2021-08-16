@@ -105,6 +105,17 @@ public class SysHouController {
         return JSON.toJSONString(map);
     }
 
+
+    /**
+     * 前端注册页面请求
+     * @return
+     */
+    @RequestMapping(value = "/zhu_c")
+    public String zhuC(){
+        return "qianzhuc";
+    }
+
+
     /**
      * 注册请求
      * @param user

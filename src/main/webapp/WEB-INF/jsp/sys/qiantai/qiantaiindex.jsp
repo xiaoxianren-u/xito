@@ -36,7 +36,7 @@
             min-height: 100%;
         }
         main {
-            padding-bottom: 910px;
+            padding-bottom: 930px;
         }
         header, footer{
             /*line-height: 100px;*/
@@ -54,10 +54,10 @@
 
 
 
-<div class="dui-container">
-<%--    <header>Header</header>--%>
+<div class="dui-container" style="width: 99%;text-align: center;" >
+    <header style="color: #e5e4e4">Header</header>
     <main><div id="view"></div></main>
-    <footer><div id="demo1"></div></footer>
+    <footer><div id="demo1" style="background-color: white"></div></footer>
 </div>
 
 

@@ -47,7 +47,7 @@
                             <div class="grid-demo grid-demo-bg1" style="margin-top: 7px;"><label class="layadmin-user-login-icon layui-icon layui-icon-username" ></label></div>
                         </div>
                         <div class="layui-col-xs11">
-                            <div class="grid-demo"><input type="text" name="username"  id="username" lay-verify="required" placeholder="用户名" class="layui-input"></div>
+                            <div class="grid-demo"><input type="text" name="username" value="admin123"  id="username" lay-verify="required" placeholder="用户名" class="layui-input"></div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <div class="grid-demo grid-demo-bg1" style="margin-top: 7px;"><label class="layadmin-user-login-icon layui-icon layui-icon-password" ></label></div>
                         </div>
                         <div class="layui-col-xs11">
-                            <input type="password" name="password" id="password" lay-verify="required" placeholder="密码" class="layui-input">
+                            <input type="password" name="password" id="password" value="12345678" lay-verify="required" placeholder="密码" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                                     <div class="grid-demo grid-demo-bg1" style="margin-top: 7px;"><label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label></div>
                                 </div>
                                 <div class="layui-col-xs10">
-                                    <input type="text" name="vercode" id="vercode" lay-verify="required" placeholder="图形验证码" class="layui-input">
+                                    <input type="text" name="vercode" id="vercode" value="1" lay-verify="required" placeholder="图形验证码" class="layui-input">
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                     <a href="javascript:;" style="color: #00FF00"><i class="layui-icon layui-icon-login-wechat"></i></a>
                     <a href="javascript:;" style="color: red"><i class="layui-icon layui-icon-login-weibo"></i></a>
                     
-                    <a href="reg.html" class="layadmin-user-jump-change layadmin-link" style="color: #1E9FFF">&nbsp;&nbsp;&nbsp;&nbsp;注册帐号</a>
+                    <a href="${pageContext.request.contextPath}/login/zhu_c" class="layadmin-user-jump-change layadmin-link" style="color: white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册帐号</a>
                 </div>
             </div>
         </div>

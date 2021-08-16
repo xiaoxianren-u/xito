@@ -30,17 +30,17 @@
     
     <title>Document</title>
 </head>
-<body>
+<body style="background-color:#e5e4e4">
 
 <div class="layui-row">
     <div class="layui-col-xs8">
         <div class="grid-demo grid-demo-bg1">
             <ul class="layui-nav layui-bg-blue" lay-bar="disabled">
-                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/sys/qiantai/qiantai"   target="test">首页</a></li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/sys/qiantai/qiantai" >首页</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">编程语言</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/java"   target="test">java</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/java">java</a></dd>
                         <dd><a href="">python</a></dd>
                         <dd><a href="">c/c++</a></dd>
                         <dd><a href="">javaScript</a></dd>
@@ -89,7 +89,7 @@
                 <li class="layui-nav-item" lay-unselect="">
                     <a href="javascript:;"><img id="image" src="${pageContext.request.contextPath}/static/imager/mo.jpg" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/">个人中心</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/" target="_self" >个人中心</a></dd>
                         <dd><a href="javascript:;">横线隔断</a></dd>
                         <hr>
                         <dd style="text-align: center;"><a id="denglv">登录</a></dd>
@@ -99,19 +99,45 @@
         </div>
     </div>
 </div>
-<div class="layui-bg-gray" style="padding: 10px;">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-panel">
-                <div style="padding: 0;">
-                    <div style="width: 100%;height: 930px;text-align: center;">
-                        <iframe frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/qiantai" name="test" style="width: 100%;height: 920px;"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+<div style="width: 100%;height: 940px;text-align: center;">
+    <iframe id="iframe" frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/qiantai"  style="width: 100%; height:100%;text-align: center"></iframe>
 </div>
+
+
+<%--刷新页面保持页面不重置--%>
+<script>
+    layui.use(['element', 'layer', 'util'], function(){
+        var $ = layui.$;
+        
+        let href_url = sessionStorage.getItem("url")
+        if (href_url === null){
+            sessionStorage.setItem("url","/sys/qiantai/qiantai");
+            window.location="${pageContext.request.contextPath}/"
+        }
+        console.log({href_url: href_url});
+        if(href_url !== null || href_url === "" || href_url !== undefined){
+            $("#iframe").attr('src',href_url);
+        }
+        $(document).ready(function(){
+            $("ul a").click(function(e){
+                e.preventDefault();
+                let url =$(this).attr("href");
+                if(url!== "" && url !== undefined){
+                    
+                    if(url !== "/sys/qiantai/geren/"){
+                        sessionStorage.setItem("url",$(this).attr("href"));
+                        $("#iframe").attr('src',$(this).attr("href"));
+                    }else {
+                        window.location=url;
+                    }
+
+                }
+            })
+        })
+    });
+</script>
+
 <div style="text-align: center;width: 100%;height: 50px;background-color: #a1a1a1">
     <%@ include file="head.jsp" %>
 </div>
@@ -211,7 +237,7 @@
     if(!CookieEnable()){
         layer.alert("对不起！您的浏览器Cookie已经关闭，您将可能无法正常使用该网站，请到设置中打开Cookie", {icon: 5});
     }else {
-        layer.msg("欢迎来到小时编程网");
+        layer.msg("欢迎来到小鸟编程网");
     }
 </script>
 

@@ -46,6 +46,10 @@ public class HouindexController {
         return "sys/houtai/index";
     }
 
+    /**
+     * 数据表页面的请求
+     * @return
+     */
     @RequestMapping(value = "/userxi")
     public String userxi(){
         return paxt+"/userxi";

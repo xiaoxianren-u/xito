@@ -164,10 +164,11 @@
                             if(id === undefined){
                                 layer.alert('无法登陆,该用户可能不存在,请先注册', {icon: 5});
                             }else {
-                               
                                 if(static === 0){
+                                    sessionStorage.setItem("url","/sys/qiantai/qiantai");
                                     window.location = "${pageContext.request.contextPath}/"
                                 }else {
+                                    sessionStorage.setItem("url1","/sys/houtai/userxi");
                                     window.location = "${pageContext.request.contextPath}/sys/houtai/index.action"
                                 }
                             }

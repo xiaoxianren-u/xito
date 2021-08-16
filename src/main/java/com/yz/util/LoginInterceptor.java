@@ -51,6 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         String [] ArrayList =
                 {
                         "/login/",
+                        "/login/zhu_c",
                         "/login/yz",
                         "/eroer",
                         "/login/login",

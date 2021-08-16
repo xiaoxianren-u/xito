@@ -44,9 +44,9 @@
 <%--            inactive-color="#ff4949">--%>
 <%--    </el-switch>--%>
 <%--</div>--%>
-<div class="layui-row layui-col-space1">
+<div class="layui-row layui-col-space1" style="width: 99%">
     <div class="layui-col-md1">
-        <div class="grid-demo" style="color: white">.</div>
+        <div class="grid-demo" style="">.</div>
     </div>
     <div class="layui-col-md2">
         <div class="layui-inline">
@@ -91,7 +91,7 @@
 </div>
 
 <%--表单--%>
-    <table class="layui-hide" id="demo" lay-filter="test" style="width: 99%"></table>
+    <table class="layui-hide" id="demo" lay-filter="test" style="width: 97%"></table>
     
 
 <%--    右边功能栏--%>
@@ -138,15 +138,15 @@
         //执行一个 table 实例数据表
         table.render({
             elem: '#demo'
-            ,width:'98%'
-            ,height: 780
+            // ,width:''
+            ,height: 770
             ,url: '${pageContext.request.contextPath}/sys/houtai/table/user' //数据接口
             ,title: '用户表'
             ,page: true //开启分页
             ,limit:15
             ,limits:[15,20,30,50,100]
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-            ,totalRow: true //开启合计行
+            // ,totalRow: true //开启合计行
             ,parseData:function (res) {
                 console.log(res);
             }
@@ -238,7 +238,6 @@
                                         }else {
                                             layer.alert("修改失败", {icon: 5});
                                         }
-
                                     }
                                 });
                             }else {
@@ -249,10 +248,13 @@
                             }
                         }
                     })
+                    
                     // table.reload('LAY-user-back-manage');
                     
                 });
+
             });
+            
             
         });
 
