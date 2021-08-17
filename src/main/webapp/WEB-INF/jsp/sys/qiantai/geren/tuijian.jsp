@@ -64,7 +64,7 @@
 <%--    </li>--%>
 <%--</ul>--%>
 
-<div class="layui-bg-gray">
+<div class="layui-bg-gray" style="width: 99%;">
     <div class="layui-row">
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -89,7 +89,7 @@
     </div>
 </div>
 
-<div class="dui-container">
+<div class="dui-container" style="width: 99%;text-align: center">
 <%--内容--%>
     <main><div id="view"></div></main>
         <%--                        分页--%>
@@ -639,7 +639,7 @@
                 elem: 'demo1'
                 ,count:count
                 ,limit:12
-                ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+                ,layout: [ 'prev', 'page', 'next', 'refresh', 'skip','count']
                 , jump: function (obj) {
                     let limit =  obj.limit;   //条数
                     let curr = obj.curr;     //页数

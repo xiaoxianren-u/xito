@@ -103,7 +103,7 @@ public class QiantaiGerenTuJianController {
     @ResponseBody
     public String requestCountData(@RequestParam(value = "text_label") String text_label){
         HashMap<String, Integer> map = new HashMap<>();
-        int n = sysTextWenMapperService.selectTextWenCountData(text_label);
+        int n = sysTextWenMapperService.selectTextWenCountData(text_label,2);
         map.put("count",n);
         return JSON.toJSONString(map);
     }
@@ -120,7 +120,8 @@ public class QiantaiGerenTuJianController {
     public String recommendListData(@RequestParam(value = "text_label") String text_label, @RequestParam(value = "curr") Integer curr, @RequestParam(value = "limit") Integer limit) {
         HashMap<String, Object> map = new HashMap();
         curr = (curr - 1) * limit;
-        List<TextWen> list = sysTextWenMapperService.selectTextWenData(text_label,curr,limit);
+        int text_status = 2;
+        List<TextWen> list = sysTextWenMapperService.selectTextWenData(text_label,curr,limit,text_status);
         map.put("data",list);
         return JSON.toJSONString(map);
     }

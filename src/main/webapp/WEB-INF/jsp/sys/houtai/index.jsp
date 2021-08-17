@@ -13,7 +13,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>小鸟编程</title>
+    <title>小鸟编程后台管理</title>
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min_2.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/layui.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/code.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main/login.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/static/imager/mo.jpg" mce_href="/${pageContext.request.contextPath}/static/imager/mo.jpg" type="image/x-icon" />
 </head>
 
 <body>
@@ -42,11 +43,9 @@
             </li>
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                 <a>
-                    <img id="image" src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">我
+                    <img id="image" src="${pageContext.request.contextPath}/static/imager/mo.jpg" class="layui-nav-img">我
                 </a>
                 <dl class="layui-nav-child">
-                    
-                    <dd><a href="">Settings</a></dd>
                     <dd><a href="">Sign out</a></dd>
                 </dl>
             </li>
@@ -57,8 +56,8 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">系统管理</a>
+                <li class="layui-nav-item">
+                    <a class="" href="">系统管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="${pageContext.request.contextPath}/sys/houtai/userxi" >用户管理</a></dd>
                         <dd><a href="javascript:;">menu 2</a></dd>
@@ -67,9 +66,9 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="" >menu group 2</a>
+                    <a href="" >内容管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">list 1</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/houtai/general.action">普通内容</a></dd>
                         <dd><a href="javascript:;">list 2</a></dd>
                         <dd><a href="1.html">超链接</a></dd>
                     </dl>
@@ -99,7 +98,7 @@
         var $ = layui.$;
         
         let href_url = sessionStorage.getItem("url1")
-        console.log({href_url: href_url});
+        // console.log({href_url: href_url});
         if(href_url !== null || href_url === "" || href_url !== undefined){
             $("#iframe").attr('src',href_url);
         }

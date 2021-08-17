@@ -67,8 +67,8 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
      * @return
      */
     @Override
-    public int selectTextWenCountData(String text_label) {
-        return sysTextWenMapper.selectTextWenCountData(text_label);
+    public int selectTextWenCountData(String text_label,int text_status) {
+        return sysTextWenMapper.selectTextWenCountData(text_label,text_status);
     }
 
     /**
@@ -80,8 +80,8 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
      */
 
     @Override
-    public List<TextWen> selectTextWenData(String text_label, int curr, int limit) {
-        return sysTextWenMapper.selectTextWenData(text_label, curr, limit);
+    public List<TextWen> selectTextWenData(String text_label, int curr, int limit,int text_status) {
+        return sysTextWenMapper.selectTextWenData(text_label, curr, limit,text_status);
     }
 
     /**
@@ -115,5 +115,49 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
     @Override
     public int selectText(TextWen textWen) {
         return sysTextWenMapper.selectText(textWen);
+    }
+
+    /**
+     * 后台内容数量
+     * @return
+     */
+
+
+    @Override
+    public int selectTextWenCountGeneraData(Integer text_id, String text_name, String text_label, Integer  text_rec_id) {
+        return sysTextWenMapper.selectTextWenCountGeneraData(text_id,text_name,text_label,text_rec_id);
+    }
+
+    /**
+     * 后台内容列表
+     * @param page
+     * @param limit
+     * @return
+     */
+
+    @Override
+    public List<TextWen> GeneralList(int page, int limit, Integer  text_id, String text_name, String text_label, Integer  text_rec_id) {
+        return sysTextWenMapper.GeneralList(page,limit,text_id,text_name,text_label,text_rec_id);
+    }
+
+    /**
+     * 后台删除内容
+     * @param text_id
+     * @return
+     */
+    @Override
+    public int StaDelete(int text_id) {
+        return sysTextWenMapper.StaDelete(text_id);
+    }
+
+    /**
+     * 后台修改内容状态
+     * @param text_id
+     * @param text_status
+     * @return
+     */
+    @Override
+    public int StaUpdate(int text_id, int text_status) {
+        return sysTextWenMapper.StaUpdate(text_id, text_status);
     }
 }

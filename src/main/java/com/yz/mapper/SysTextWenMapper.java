@@ -24,7 +24,7 @@ public interface SysTextWenMapper {
 
 
     /**
-     *  内容数量
+     *  个人内容数量
      * @param id 用户id
      * @return 数量
      */
@@ -32,7 +32,7 @@ public interface SysTextWenMapper {
     int selectTextWenCount(@Param("id") Integer id,@Param("text_status") int text_status);
 
     /**
-     * 显示所有内容数据
+     * 显示所有个人内容数据
      * @param id
      * @param curr
      * @param limit
@@ -47,17 +47,17 @@ public interface SysTextWenMapper {
      * @param text_label
      * @return
      */
-    int selectTextWenCountData(@Param("text_label") String text_label);
+    int selectTextWenCountData(@Param("text_label") String text_label,@Param("text_status") int text_status);
 
 
     /**
-     * 作者推荐内容数据
+     * 前端内容数据
      * @param text_label
      * @param curr
      * @param limit
      * @return
      */
-    List<TextWen> selectTextWenData(@Param("text_label") String text_label,@Param("curr")  int curr,@Param("limit")  int limit);
+    List<TextWen> selectTextWenData(@Param("text_label") String text_label,@Param("curr")  int curr,@Param("limit")  int limit,@Param("text_status") int text_status);
 
     /**
      * 查询是否已经有了
@@ -85,5 +85,36 @@ public interface SysTextWenMapper {
     int selectText(TextWen textWen);
 
 
+    /**
+     * 后端内容数量
+     * @return
+     */
 
+    int selectTextWenCountGeneraData(@Param("text_id") Integer  text_id,@Param("text_name") String text_name,@Param("text_label") String text_label,@Param("text_rec_id") Integer text_rec_id);
+
+
+    /**
+     * 后台内容列表
+     * @param page
+     * @param limit
+     * @return
+     */
+    List<TextWen> GeneralList(@Param("page") int page,@Param("limit") int limit,@Param("text_id") Integer  text_id,@Param("text_name") String text_name,@Param("text_label") String text_label,@Param("text_rec_id") Integer  text_rec_id);
+
+
+    /**
+     * 后台删除内容
+     * @param text_id
+     * @return
+     */
+    int StaDelete(@Param("text_id") int text_id);
+
+
+    /**
+     * 后修改内容的状态
+     * @param text_id
+     * @param text_status
+     * @return
+     */
+    int StaUpdate(@Param("text_id") int text_id,@Param("text_status") int text_status);
 }

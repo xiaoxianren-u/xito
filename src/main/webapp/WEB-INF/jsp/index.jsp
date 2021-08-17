@@ -89,7 +89,7 @@
                 <li class="layui-nav-item" lay-unselect="">
                     <a href="javascript:;"><img id="image" src="${pageContext.request.contextPath}/static/imager/mo.jpg" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/" target="_self" >个人中心</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/geren/" target="_blank" >个人中心</a></dd>
                         <dd><a href="javascript:;">横线隔断</a></dd>
                         <hr>
                         <dd style="text-align: center;"><a id="denglv">登录</a></dd>
@@ -104,7 +104,7 @@
     <iframe id="iframe" frameborder="no" src="${pageContext.request.contextPath}/sys/qiantai/qiantai"  style="width: 100%; height:100%;text-align: center"></iframe>
 </div>
 
-
+<script></script>
 <%--刷新页面保持页面不重置--%>
 <script>
     layui.use(['element', 'layer', 'util'], function(){
@@ -124,12 +124,19 @@
                 e.preventDefault();
                 let url =$(this).attr("href");
                 if(url!== "" && url !== undefined){
-                    
                     if(url !== "/sys/qiantai/geren/"){
                         sessionStorage.setItem("url",$(this).attr("href"));
                         $("#iframe").attr('src',$(this).attr("href"));
-                    }else {
-                        window.location=url;
+                    }else if(url === "/sys/qiantai/geren/") {
+                        let username = sessionStorage.getItem("userid");
+                        // console.log(username);
+                        if (username !== null &&  username.length>=8){
+                            // window.location.href=url;
+                            window.open(url);
+                        }else {
+                            layer.msg("请先登录");
+                        }
+                        
                     }
 
                 }

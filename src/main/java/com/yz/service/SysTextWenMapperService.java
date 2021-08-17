@@ -41,21 +41,22 @@ public interface SysTextWenMapperService {
     List<TextWen> selectTextWen(Integer id,int curr,int limit,int text_status);
 
     /**
-     *前端内容条数
+     *
      * @param text_label
+     * @param text_status
      * @return
      */
-    int selectTextWenCountData(@Param("text_label") String text_label);
+    int selectTextWenCountData(String text_label,int text_status);
 
     /**
-     * 显示所有数据
+     * 前台显示所有数据
      * @param text_label
      * @param curr
      * @param limit
      * @return
      */
 
-    List<TextWen> selectTextWenData(@Param("text_label") String text_label,@Param("curr")  int curr,@Param("limit")  int limit);
+    List<TextWen> selectTextWenData(String text_label,int curr,int limit,int text_status);
 
 
 
@@ -66,7 +67,7 @@ public interface SysTextWenMapperService {
      * @return
      */
 
-    List<Cllect> selectCll(@Param("username") String username);
+    List<Cllect> selectCll(String username);
 
     /**
      * 收藏
@@ -75,7 +76,7 @@ public interface SysTextWenMapperService {
      * @param cll_data
      * @return
      */
-    int insertCllect(@Param("text_id") Integer text_id,@Param("username") String username,@Param("cll_data") String cll_data);
+    int insertCllect(Integer text_id, String username, String cll_data);
 
 
     /**
@@ -85,5 +86,38 @@ public interface SysTextWenMapperService {
      */
 
     int selectText(TextWen textWen);
+
+
+    /**
+     * 后端内容数量
+     * @return
+     */
+
+    int selectTextWenCountGeneraData(Integer text_id,String text_name,String text_label, Integer text_rec_id);
+
+    /**
+     * 后台内容列表
+     * @param page
+     * @param limit
+     * @return
+     */
+    List<TextWen> GeneralList( int page, int limit,Integer text_id,String text_name,String text_label, Integer text_rec_id);
+
+
+    /**
+     * 后台删除内容
+     * @param text_id
+     * @return
+     */
+    int StaDelete(int text_id);
+
+
+    /**
+     * 后修改内容的状态
+     * @param text_id
+     * @param text_status
+     * @return
+     */
+    int StaUpdate( int text_id, int text_status);
 
 }

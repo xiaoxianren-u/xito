@@ -190,7 +190,7 @@
                 elem: 'demo1'
                 ,count:count
                 ,limit:12
-                ,layout: ['count', 'prev', 'page', 'next',  'refresh', 'skip']
+                ,layout: [ 'prev', 'page', 'next',  'refresh', 'skip','count']
                 // ,limits:[12]
                 , jump: function (obj) {
                     // this.count = 22;

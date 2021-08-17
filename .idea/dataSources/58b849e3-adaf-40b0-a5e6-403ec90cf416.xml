@@ -1073,7 +1073,7 @@ SELECT|sys.sys_config
       <Comment>内容评分人数</Comment>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>-1</DefaultExpression>
+      <DefaultExpression>0</DefaultExpression>
     </column>
     <column id="311" parent="288" name="cll_status">
       <Position>16</Position>

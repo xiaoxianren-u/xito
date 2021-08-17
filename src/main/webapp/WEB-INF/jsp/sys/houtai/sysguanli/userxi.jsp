@@ -15,8 +15,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min_2.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/layui.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/el.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/laydate/default/laydate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/layer.css">
@@ -28,10 +26,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/code.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/modules/layer/default/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/v.css">
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<%--    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--%>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
 </head>
 <body>
 <%--<hr/>--%>
@@ -110,7 +104,7 @@
     <input type="checkbox" name="sex" mid1="{{d.username}}"  lay-skin="switch" lay-text="" lay-filter="sexDemo1" {{ d.stats == 1 ? 'checked' : '' }}>
 </script>
 
-<script id="img">
+<script id="img"  type="text/html">
     <div><img style="height:35px;width:35px;" src="{{ d.image}}" ></div>
 </script>
 <script>
@@ -177,7 +171,7 @@
             var id = $(this).attr('mid');
             console.info('id:'+id);
             console.log(obj.elem.checked);
-            var stati = obj.elem.checked?"1":"0";
+            let stati = obj.elem.checked?"1":"0";
             console.info('isManager:' + stati);
             $.ajax({
                 type: "post",
@@ -212,7 +206,6 @@
                 formType: 1
                 ,title: '敏感操作，请验证口令'
             }, function(value, index){
-                layer.close(index);
                 layer.confirm('确定修改管理权限吗？', function(index) {
                     //执行 Ajax 后重载
                     $.ajax({
@@ -234,23 +227,29 @@
                                     contentType: "application/json;charset=UTF-8",
                                     success: function (data) {
                                         if(data === true){
-                                            layer.alert("成功修改", {icon: 6});
+                                            layer.msg("成功修改", {icon: 6});
+                                            setTimeout(function () {
+                                                window.location.reload();  //刷新页面
+                                            }, 800);
                                         }else {
-                                            layer.alert("修改失败", {icon: 5});
+                                            layer.msg("修改失败", {icon: 5});
+                                            setTimeout(function () {
+                                                window.location.reload();  //刷新页面
+                                            }, 800);
                                         }
                                     }
                                 });
                             }else {
                                 layer.msg('口令错误');
-                                setTimeout(function () {
-                                    window.location.reload();  //刷新页面
-                                }, 800);
+                                // setTimeout(function () {
+                                //     window.location.reload();  //刷新页面
+                                // }, 800);
+
+                                
+                                
                             }
                         }
                     })
-                    
-                    // table.reload('LAY-user-back-manage');
-                    
                 });
 
             });

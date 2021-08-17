@@ -37,10 +37,7 @@
                 <if test="text_status != 3">and text_status = #{text_status}</if>
             </where>
         </select>
-
-
 <!--        显示个人推荐内容数据-->
-
         <select id="selectTextWen" resultType="com.yz.pojo.TextWen">
             select * from xiton.text_wen
 <!--            order by text_id desc-->
@@ -50,6 +47,7 @@
             </where>
             Limit #{curr},#{limit}
         </select>
+
 <!--       前端内容条数 -->
         <select id="selectTextWenCountData" resultType="int">
             select COUNT(*) from xiton.text_wen
@@ -57,21 +55,29 @@
                 <if test="text_label != null and text_label != ''">
                     and text_label = #{text_label}
                 </if>
+                <if test="text_status != null">
+                    and text_status = #{text_status}
+                </if>
+
             </where>
         </select>
 <!--        前端内容-->
         <select id="selectTextWenData" resultType="com.yz.pojo.TextWen">
             select * from xiton.text_wen
-            order by text_id desc
+
             <where>
                 <if test="text_label != null and text_label != ''">
                     and text_label = #{text_label}
                 </if>
+                <if test="text_status != null">
+                    and text_status= #{text_status}
+                </if>
             </where>
+            order by text_id desc
             Limit #{curr},#{limit}
         </select>
 
-
+<!--        查询收藏夹里是否已经有-->
         <select id="selectCll" resultType="com.yz.pojo.Cllect">
             select * from xiton.cllect
             where username = #{username}
@@ -99,5 +105,43 @@
         </delete>
 
 
+<!--        后端内容数量-->
+        <select id="selectTextWenCountGeneraData" resultType="java.lang.Integer">
+            select COUNT(*) from xiton.text_wen
+            <where>
+                <if test="text_id != null">and text_id = #{text_id}</if>
+                <if test="text_label != null and text_label != ''">and text_label = #{text_label}</if>
+                <if test="text_name != null and text_name != ''">and text_name like '%${text_name}%'</if>
+                <if test="text_rec_id != null">and text_rec_id =#{text_rec_id}</if>
+            </where>
+        </select>
 
+<!--        后台内容列表-->
+
+        <select id="GeneralList" resultType="com.yz.pojo.TextWen">
+
+            select * from xiton.text_wen
+            <where>
+                <if test="text_id != null">and text_id = #{text_id}</if>
+                <if test="text_label != null and text_label != ''">and text_label =#{text_label}</if>
+                <if test="text_name != null and text_name != ''">and text_name like '%${text_name}%'</if>
+                <if test="text_rec_id != null">and text_rec_id =#{text_rec_id}</if>
+            </where>
+            order by text_id desc
+            Limit #{page},#{limit}
+        </select>
+
+
+<!--        后台删除内容-->
+        <delete id="StaDelete">
+            delete from xiton.text_wen
+            where text_id = #{text_id}
+
+        </delete>
+<!--        后台修改内容状态-->
+        <update id="StaUpdate">
+            update xiton.text_wen
+            set text_status = #{text_status}
+            where text_id = #{text_id}
+        </update>
 </mapper>

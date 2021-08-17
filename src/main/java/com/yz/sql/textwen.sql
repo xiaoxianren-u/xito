@@ -15,7 +15,7 @@ CREATE TABLE text_wen(
                          text_share INT (11) NOT NULL DEFAULT 0 COMMENT '内容分享量',
                          text_read INT (11) NOT NULL DEFAULT 0 COMMENT '内容访问量',
                          text_score INT (11) NOT NULL DEFAULT 0 COMMENT '内容评分总分数',
-                         text_total INT (11) NOT NULL DEFAULT -1 COMMENT '内容评分人数',
+                         text_total INT (11) NOT NULL DEFAULT 0 COMMENT '内容评分人数',
                          cll_status varchar(2) default 0 null comment '收藏状态',
                          PRIMARY KEY (text_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'text_wen';
