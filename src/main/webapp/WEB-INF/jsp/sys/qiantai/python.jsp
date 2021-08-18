@@ -165,7 +165,7 @@
     let username = sessionStorage.getItem("userid");
     $.ajax({
         type: "get",
-        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/countData?text_label="+"Java",
+        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/countData?text_label="+"Python",
         async: true,
         dataType: "json",
         contentType: "application/json;charset=UTF-8",
@@ -200,7 +200,7 @@
                     console.log(obj.limit);
                     $.ajax({
                         type: "get",
-                        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/listData?text_label="+"Java"+"&curr="+curr+"&limit="+limit,
+                        url: "${pageContext.request.contextPath}/sys/qiantai/geren/recommend/listData?text_label="+"Python"+"&curr="+curr+"&limit="+limit,
                         async: true,
                         dataType: "json",
                         contentType: "application/json;charset=UTF-8",

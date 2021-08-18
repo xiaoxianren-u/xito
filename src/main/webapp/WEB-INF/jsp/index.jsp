@@ -38,22 +38,22 @@
             <ul class="layui-nav layui-bg-blue" lay-bar="disabled">
                 <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/sys/qiantai/qiantai" >首页</a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">编程语言</a>
+                    <a href="">编程语言</a>
                     <dl class="layui-nav-child">
                         <dd><a href="${pageContext.request.contextPath}/sys/qiantai/java">java</a></dd>
-                        <dd><a href="">python</a></dd>
-                        <dd><a href="">c/c++</a></dd>
-                        <dd><a href="">javaScript</a></dd>
-                        <dd><a href="">PHP</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/python">python</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/c">c/c++</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/javas">javaScript</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/php">PHP</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">必修基础</a>
+                    <a href="">必修基础</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="">算法数据结构</a></dd>
-                        <dd><a href="">计算机系统</a></dd>
-                        <dd><a href="">计算机网络</a></dd>
-                        <dd><a href="">软件开发</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/suanfa">算法数据结构</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/jixiton">计算机系统</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/jiwangluo">计算机网络</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/sys/qiantai/ruanji">软件开发</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">编程框架</a></li>

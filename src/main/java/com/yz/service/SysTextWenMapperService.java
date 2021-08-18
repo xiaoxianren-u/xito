@@ -41,7 +41,7 @@ public interface SysTextWenMapperService {
     List<TextWen> selectTextWen(Integer id,int curr,int limit,int text_status);
 
     /**
-     *
+     *前台个数
      * @param text_label
      * @param text_status
      * @return

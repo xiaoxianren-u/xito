@@ -2,7 +2,9 @@ package com.yz.controller.houtai;
 
 import com.alibaba.fastjson.JSON;
 import com.yz.pojo.TextWen;
+import com.yz.pojo.User;
 import com.yz.service.SysTextWenMapperService;
+import com.yz.service.SysUserxiMapperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,8 @@ public class HouGeneralController {
     @Autowired
     private SysTextWenMapperService sysTextWenMapperService;
 
+    @Autowired
+    private SysUserxiMapperService sysUserxiMapperService;
 
     private final String paxt = "/sys/houtai/sysguanli";
     /**
@@ -53,7 +57,7 @@ public class HouGeneralController {
 
     @RequestMapping(value = "/generalList",method = RequestMethod.GET)
     @ResponseBody
-    public String GeneralList(@RequestParam("page") Integer page,@RequestParam("limit") Integer limit,@RequestParam("text_id") Integer text_id,@RequestParam("text_name") String text_name,@RequestParam("text_label") String text_label,@RequestParam("text_rec_id") Integer text_rec_id){
+    public String GeneralList(@RequestParam("page") Integer page,@RequestParam("limit") Integer limit,@RequestParam("text_id") Integer text_id,@RequestParam("text_name") String text_name,@RequestParam("text_label") String text_label,@RequestParam("username") String username){
 //        System.out.println("text_label = " + text_label);
         if (text_name.length()>0){
             try {
@@ -69,7 +73,16 @@ public class HouGeneralController {
                 e.printStackTrace();
             }
         }
-//        System.out.println("text_label = " + text_label);
+        Integer text_rec_id = null;
+        if (!"".equals(username)){
+            User user = sysUserxiMapperService.userid(username);
+            if (user!= null){
+                text_rec_id = user.getId();
+            }else {
+                return JSON.toJSONString(false);
+            }
+
+        }
         int n = sysTextWenMapperService.selectTextWenCountGeneraData(text_id,text_name,text_label,text_rec_id);
         page = (page-1)*limit;
         List<TextWen> list = sysTextWenMapperService.GeneralList(page,limit,text_id,text_name,text_label,text_rec_id);

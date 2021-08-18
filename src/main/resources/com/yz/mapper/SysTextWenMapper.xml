@@ -64,7 +64,6 @@
 <!--        前端内容-->
         <select id="selectTextWenData" resultType="com.yz.pojo.TextWen">
             select * from xiton.text_wen
-
             <where>
                 <if test="text_label != null and text_label != ''">
                     and text_label = #{text_label}

@@ -36,6 +36,73 @@ public class QiantaiIndexController {
     public String javaIndex(){
         return paxt+"/java";
     }
+    /**
+     * python页面
+     * @return
+     */
+    @RequestMapping(value = "/python")
+    public String PythonIndex(){
+        return paxt+"/python";
+    }
+    /**
+     * c/c++页面
+     * @return
+     */
+    @RequestMapping(value = "/c")
+    public String CIndex(){
+        return paxt+"/c";
+    }
+    /**
+     * javaScript页面
+     * @return
+     */
+    @RequestMapping(value = "/javas")
+    public String javasIndex(){
+        return paxt+"/javas";
+    }
+    /**
+     * php页面
+     * @return
+     */
+    @RequestMapping(value = "/php")
+    public String phpIndex(){
+        return paxt+"/php";
+    }
+    /**
+     * 计算机网络页面
+     * @return
+     */
+    @RequestMapping(value = "/jiwangluo")
+    public String jiwangluoIndex(){
+        return paxt+"/jiwangluo";
+    }
+    /**
+     * 计算机系统页面
+     * @return
+     */
+    @RequestMapping(value = "/jixiton")
+    public String jixitonIndex(){
+        return paxt+"/jixiton";
+    }
+    /**
+     * 软件页面
+     * @return
+     */
+    @RequestMapping(value = "/ruanji")
+    public String ruanjiIndex(){
+        return paxt+"/ruanji";
+    }
+    /**
+     * 算法页面
+     * @return
+     */
+    @RequestMapping(value = "/suanfa")
+    public String suanfaIndex(){
+        return paxt+"/suanfa";
+    }
+
+
+
 
 
     @RequestMapping("/select")

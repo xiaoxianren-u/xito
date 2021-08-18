@@ -33,6 +33,8 @@
 </head>
 <body>
 <br/>
+
+<form οnsubmit="return false">
 <div class="demoTable">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     搜索ID：
@@ -52,11 +54,21 @@
     &nbsp;&nbsp;
     作者id：
     <div class="layui-inline">
-        <input class="layui-input" name="id" id="text_rec_id" placeholder="输入内容作者"  autocomplete="off">
+        <input class="layui-input" name="id" id="username" placeholder="输入内容作者"  autocomplete="off">
     </div>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <button class="layui-btn" data-type="reload">搜索</button>
+    <button type="submit" class="layui-btn" data-type="reload">搜索</button>
+    <button type="reset" class="layui-btn layui-btn-warm">重置</button>
 </div>
+</form >
+<script>
+    var form = document.getElementsByTagName('form')[0];
+    form.addEventListener('submit',function(e){
+        var event = e || window.event;
+        event.preventDefault();
+    });
+</script>
+
 <table class="layui-hide" id="test"  lay-filter="test"></table>
 
 <script type="text/html" id="barDemo">
@@ -119,11 +131,14 @@
         
         table.render({
             elem: '#test'
-            ,url:'/sys/houtai/generalList?text_id='+""+"&text_name="+""+"&text_label="+""+"&text_rec_id="+""
+            ,url:'/sys/houtai/generalList?text_id='+""+"&text_name="+""+"&text_label="+""+"&username="+""
             ,toolbar: 'default'
             ,totalRow: true //开启合计行
             ,parseData:function (res) {
                 // console.log(res);
+                if (res === false){
+                    layer.msg("没有该用户",{icon:0})
+                }
             }
             ,cols: [[
                 {type:'checkbox',fixed: 'left'}
@@ -158,20 +173,14 @@
                 let text_id = $('#text_id').val();
                 let text_name = $('#text_name').val();
                 let text_label = $('#text_label').val();
-                let text_rec_id = $('#text_rec_id').val();
+                let username = $('#username').val();
                 console.log(text_label);
                 //执行重载
                 table.reload('testReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
-                    ,url: '/sys/houtai/generalList?text_id='+text_id+"&text_name="+text_name+"&text_label="+text_label+"&text_rec_id="+text_rec_id
-                    // ,where:{
-                    //     text_id:text_id,
-                    //     text_name:text_name,
-                    //     text_label:text_label,
-                    //     text_rec_id:text_rec_id,
-                    // }
+                    ,url: '/sys/houtai/generalList?text_id='+text_id+"&text_name="+text_name+"&text_label="+text_label+"&username="+username
                 });
             }
         };

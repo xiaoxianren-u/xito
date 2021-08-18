@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -103,6 +104,10 @@ public class QiantaiGerenTuJianController {
     @ResponseBody
     public String requestCountData(@RequestParam(value = "text_label") String text_label){
         HashMap<String, Integer> map = new HashMap<>();
+
+        if ("c/c".equals(text_label)){
+            text_label = "C/C++";
+        }
         int n = sysTextWenMapperService.selectTextWenCountData(text_label,2);
         map.put("count",n);
         return JSON.toJSONString(map);
@@ -119,6 +124,9 @@ public class QiantaiGerenTuJianController {
     @ResponseBody
     public String recommendListData(@RequestParam(value = "text_label") String text_label, @RequestParam(value = "curr") Integer curr, @RequestParam(value = "limit") Integer limit) {
         HashMap<String, Object> map = new HashMap();
+        if ("c/c".equals(text_label)){
+            text_label = "C/C++";
+        }
         curr = (curr - 1) * limit;
         int text_status = 2;
         List<TextWen> list = sysTextWenMapperService.selectTextWenData(text_label,curr,limit,text_status);

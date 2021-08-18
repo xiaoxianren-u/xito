@@ -57,6 +57,15 @@ public class LoginInterceptor implements HandlerInterceptor {
                         "/login/login",
                         "/login/zhu_ce",
                         "/sys/qiantai/qiantai",
+                        "/sys/qiantai/java",
+                        "/sys/qiantai/python",
+                        "/sys/qiantai/c",
+                        "/sys/qiantai/javas",
+                        "/sys/qiantai/php",
+                        "/sys/qiantai/jiwangluo",
+                        "/sys/qiantai/jixiton",
+                        "/sys/qiantai/ruanji",
+                        "/sys/qiantai/suanfa",
                         "/sys/qiantai/geren/recommend/listData",
                         "/sys/qiantai/geren/recommend/countData"
                 };
