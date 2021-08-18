@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class QianIndexController {
 
-
     /**
      * 前端首页
      * @param model
