@@ -3,6 +3,7 @@ package com.yz.controller.houtai;
 import com.alibaba.fastjson.JSON;
 import com.yz.pojo.User;
 import com.yz.service.UserMapperService;
+import com.yz.util.Ip;
 import com.yz.util.Md_5;
 import com.yz.util.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,7 +61,9 @@ public class SysHouController {
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public String index(@RequestBody User user, HttpSession session)   {
+    public String index(@RequestBody User user, HttpSession session, HttpServletRequest request)   {
+
+        String ip = Ip.getIpAddr(request);
 
         String passwordJiami = Md_5.Stringcode(user.getPassword());
         System.out.println("user = " + user);
