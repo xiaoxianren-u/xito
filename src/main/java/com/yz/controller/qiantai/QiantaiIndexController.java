@@ -100,6 +100,15 @@ public class QiantaiIndexController {
     public String suanfaIndex(){
         return paxt+"/suanfa";
     }
+    /**
+     * 算法页面
+     * @return
+     */
+    @RequestMapping(value = "/explain")
+    public String ExplainIndex(){
+        return paxt+"/explain";
+    }
+
 
 
 

@@ -73,7 +73,7 @@
                     
                     <div style="padding: 15px 15px;">
                         <div class="layui-row layui-col-space10">
-                            <a href={{item.text_link}}>
+                            <a href="${pageContext.request.contextPath}/sys/qiantai/explain?text_id={{item.text_id}}" target="_blank">
                                 <div class="layui-col-xs5">
                                     <div class="grid-demo grid-demo-bg1">
                                         <div style="width: 100%; height: 195px;background-color: #1E9FFF"
@@ -94,7 +94,7 @@
                             <div class="layui-col-xs7">
                                 <div class="grid-demo">
                                     <%--                                自动换行--%>
-                                    <a href={{item.text_link}} >
+                                        <a href="${pageContext.request.contextPath}/sys/qiantai/explain?text_id={{item.text_id}}" target="_blank">
                                         <div style="height: 190px; width: 100%;word-break:break-all;text-align: center;">
                                             <br>
                                             <h2 id="h1" style="text-align: center">{{item.text_name}}</h2><br>

@@ -120,4 +120,12 @@ public interface SysTextWenMapperService {
      */
     int StaUpdate( int text_id, int text_status);
 
+
+    /**
+     * 显示内容
+     * @param text_id
+     * @return
+     */
+    TextWen explainDataText(Integer text_id);
+
 }

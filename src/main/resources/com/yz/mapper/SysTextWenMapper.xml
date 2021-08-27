@@ -143,4 +143,11 @@
             set text_status = #{text_status}
             where text_id = #{text_id}
         </update>
+<!--        显示内容-->
+        <select id="explainDataText" resultType="com.yz.pojo.TextWen">
+
+            select xiton.text_wen.*,name from xiton.text_wen join xiton.user
+            where user.id = (select text_rec_id from xiton.text_wen where text_id = #{text_id}) and text_id =#{text_id}
+
+        </select>
 </mapper>

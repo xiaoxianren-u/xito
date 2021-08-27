@@ -48,6 +48,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         System.out.println("session.getAttribute(\"userid\") = " + session.getAttribute("userid"));
         int n =1;
+//        开放的接口
         String [] ArrayList =
                 {
                         "/login/",
@@ -66,8 +67,10 @@ public class LoginInterceptor implements HandlerInterceptor {
                         "/sys/qiantai/jixiton",
                         "/sys/qiantai/ruanji",
                         "/sys/qiantai/suanfa",
+                        "/sys/qiantai/explain",
                         "/sys/qiantai/geren/recommend/listData",
-                        "/sys/qiantai/geren/recommend/countData"
+                        "/sys/qiantai/geren/recommend/countData",
+                        "/sys/qiantai/geren/explain/data"
                 };
 
         for (String s : ArrayList){
@@ -75,27 +78,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                 n = 0;
             }
         }
-        /**
-         * 访问登录页面
-         */
-//        if("/login/yz".equals(url)){
-//            return true;
-//        }else  if ("/eroer".equals(url)){
-//            return true;
-//        }
-//        /**
-//         * 用户登录请求
-//         */
-//        else if ("/login/login".equals(url)){
-//            return true;
-//        }
-//        /**
-//         * 用户注册
-//         */
-//        else if ("/login/zhu_ce".equals(url)){
-//            return true;
-//        }
-//
         if(n == 0){
             System.out.println("---------------------------------------------------");
             return true;
@@ -110,7 +92,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-
+//        return true;  //开放所有接口
     }
 
 }

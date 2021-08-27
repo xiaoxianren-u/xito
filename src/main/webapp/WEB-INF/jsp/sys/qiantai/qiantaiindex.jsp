@@ -73,7 +73,7 @@
                     
                     <div style="padding: 15px 15px;">
                         <div class="layui-row layui-col-space10">
-                            <a href={{item.text_link}}>
+                            <a href="${pageContext.request.contextPath}/sys/qiantai/explain?text_id={{item.text_id}}" target="_blank">
                             <div class="layui-col-xs5">
                                 <div class="grid-demo grid-demo-bg1">
                                     <div style="width: 100%; height: 195px;background-color: #1E9FFF"
@@ -94,7 +94,7 @@
                             <div class="layui-col-xs7">
                                 <div class="grid-demo">
                                     <%--                                自动换行--%>
-                                        <a href={{item.text_link}} >
+                                        <a href="${pageContext.request.contextPath}/sys/qiantai/explain?text_id={{item.text_id}}" target="_blank">
                                     <div style="height: 190px; width: 100%;word-break:break-all;text-align: center;">
                                         <br>
                                         <h2 id="h1" style="text-align: center">{{item.text_name}}</h2><br>
@@ -224,15 +224,13 @@
             });
         })
     }
-
-    setTimeout(send,1000)  //延迟0.5秒执行
-
+    setTimeout(send,800)  //延迟0.5秒执行
 </script>
 <%--点击事件--%>
 <script>
 
     $(document).on('click', '#sou', function() {
-        layer.msg('响应点击事件');
+        // layer.msg('响应点击事件');
         let text_id = $(this).attr("value");
         let b = $(this).attr("value1");
         let username = sessionStorage.getItem("userid");
@@ -246,13 +244,13 @@
                 success: function (res) {
                     if (res === 1){
                         console.log(res);
-                        layer.msg("已为你收藏",{icon:6});
+                        layer.msg("已为你收藏",{icon:1});
                     }
                     if (res === 0){
                         layer.msg("你已收藏过",{icon:6});
                     }
                     if (res === 2){
-                        layer.msg("无法收藏",{icon:5});
+                        layer.msg("无法收藏",{icon:2});
                     }
                 }
             })

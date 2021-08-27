@@ -85,4 +85,9 @@ public class TextWen {
      */
     private String cll_status;
 
+    /**
+     * 推荐者
+     */
+    private String name;
+
 }

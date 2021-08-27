@@ -117,4 +117,12 @@ public interface SysTextWenMapper {
      * @return
      */
     int StaUpdate(@Param("text_id") int text_id,@Param("text_status") int text_status);
+
+    /**
+     * 显示内容
+     * @param text_id
+     * @return
+     */
+    TextWen explainDataText(@Param("text_id") Integer text_id);
+
 }

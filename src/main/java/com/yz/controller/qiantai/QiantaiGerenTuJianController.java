@@ -172,6 +172,15 @@ public class QiantaiGerenTuJianController {
         return JSON.toJSONString(n>0);
     }
 
+    @RequestMapping(value = "/explain/data",method = RequestMethod.GET)
+    @ResponseBody
+    public String explainData(@RequestParam("text_id") Integer text_id){
+
+        TextWen textWen = sysTextWenMapperService.explainDataText(text_id);
+        return JSON.toJSONString(textWen);
+    }
+
+
 
 
 

@@ -160,4 +160,14 @@ public class SysTextWenMapperServiceImp implements SysTextWenMapperService {
     public int StaUpdate(int text_id, int text_status) {
         return sysTextWenMapper.StaUpdate(text_id, text_status);
     }
+
+    /**
+     * 显示内容
+     * @param text_id
+     * @return
+     */
+    @Override
+    public TextWen explainDataText(Integer text_id) {
+        return sysTextWenMapper.explainDataText(text_id);
+    }
 }
